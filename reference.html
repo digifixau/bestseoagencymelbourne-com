@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Best SEO Agency Melbourne | Local Melbourne SEO Experts | Grow Online</title>
+<meta name="description" content="Melbourne SEO experts who know the local market. We help Melbourne businesses grow their online presence and attract more customers through the power of organic search.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange: #E85D26;
+    --orange-light: #FF7A45;
+    --orange-pale: #FFF4EF;
+    --green: #1A6B4A;
+    --green-light: #22C07A;
+    --cream: #FDFAF5;
+    --dark: #1C1C1A;
+    --text: #2D2D2A;
+    --muted: #6E6B65;
+    --border: #E8E4DC;
+    --white: #FFFFFF;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--cream); color: var(--text); font-family: 'Outfit', sans-serif; overflow-x: hidden; }
+
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 60px;
+    background: rgba(253,250,245,0.95); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { font-family: 'Instrument Serif', serif; font-size: 1.15rem; font-weight: 400; color: var(--dark); text-decoration: none; display: flex; align-items: center; gap: 10px; }
+  .nav-dot { width: 8px; height: 8px; background: var(--orange); border-radius: 50%; }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.88rem; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--dark); }
+  .nav-cta { background: var(--orange); color: white; padding: 12px 26px; font-size: 0.85rem; font-weight: 600; text-decoration: none; border-radius: 6px; transition: all 0.2s; }
+  .nav-cta:hover { background: var(--orange-light); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(232,93,38,0.3); }
+
+  /* HERO */
+  .hero { padding: 140px 60px 80px; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 80px; align-items: center; }
+  .hero-left { }
+  .hero-right { }
+  .location-badge { display: inline-flex; align-items: center; gap: 10px; background: white; border: 1px solid var(--border); padding: 8px 18px; border-radius: 100px; margin-bottom: 36px; font-size: 0.8rem; font-weight: 500; color: var(--text); animation: floatIn 0.7s ease both; }
+  .loc-pin { color: var(--orange); }
+  @keyframes floatIn { from{opacity:0;transform:translateY(-10px)} to{opacity:1;transform:none} }
+  @keyframes rise { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:none} }
+  @keyframes pop { from{opacity:0;transform:scale(0.95)} to{opacity:1;transform:scale(1)} }
+  h1 { font-family: 'Instrument Serif', serif; font-size: clamp(3rem, 5.5vw, 5rem); font-weight: 400; line-height: 1.1; color: var(--dark); margin-bottom: 28px; animation: rise 0.7s 0.1s ease both; }
+  h1 em { font-style: italic; color: var(--orange); }
+  .hero-text { font-size: 1rem; line-height: 1.75; color: var(--muted); margin-bottom: 44px; font-weight: 400; max-width: 500px; animation: rise 0.7s 0.2s ease both; }
+  .hero-actions { display: flex; gap: 16px; align-items: center; animation: rise 0.7s 0.3s ease both; flex-wrap: wrap; }
+  .btn-primary { background: var(--orange); color: white; padding: 16px 36px; font-size: 0.92rem; font-weight: 600; text-decoration: none; border-radius: 8px; transition: all 0.2s; display: inline-block; }
+  .btn-primary:hover { background: var(--orange-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(232,93,38,0.3); }
+  .btn-secondary { color: var(--text); text-decoration: none; font-size: 0.92rem; font-weight: 500; display: flex; align-items: center; gap: 8px; transition: gap 0.2s; }
+  .btn-secondary:hover { gap: 14px; color: var(--orange); }
+  .hero-trust { margin-top: 48px; padding-top: 40px; border-top: 1px solid var(--border); display: flex; gap: 40px; animation: rise 0.7s 0.4s ease both; }
+  .trust-val { font-family: 'Instrument Serif', serif; font-size: 2.2rem; color: var(--dark); display: block; line-height: 1; }
+  .trust-label { font-size: 0.78rem; color: var(--muted); margin-top: 4px; }
+
+  .hero-card { background: white; border-radius: 16px; padding: 36px; box-shadow: 0 20px 60px rgba(0,0,0,0.08); border: 1px solid var(--border); animation: pop 0.8s 0.3s ease both; }
+  .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px; }
+  .card-title { font-size: 0.82rem; font-weight: 600; color: var(--text); }
+  .card-badge { background: var(--orange-pale); color: var(--orange); padding: 4px 12px; border-radius: 100px; font-size: 0.72rem; font-weight: 600; }
+  .card-business { display: flex; align-items: center; gap: 14px; margin-bottom: 28px; padding: 16px; background: var(--cream); border-radius: 10px; }
+  .biz-icon { width: 44px; height: 44px; background: white; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+  .biz-name { font-size: 0.88rem; font-weight: 600; }
+  .biz-location { font-size: 0.75rem; color: var(--muted); }
+  .metrics-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 24px; }
+  .metric-box { background: var(--cream); border-radius: 10px; padding: 16px 14px; text-align: center; }
+  .metric-val { font-family: 'Instrument Serif', serif; font-size: 1.6rem; color: var(--dark); display: block; line-height: 1; }
+  .metric-val.green { color: var(--green); }
+  .metric-key { font-size: 0.68rem; color: var(--muted); margin-top: 4px; }
+  .rank-list { }
+  .rank-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 0.82rem; }
+  .rank-kw { color: var(--text); font-weight: 500; }
+  .rank-badge { padding: 3px 10px; border-radius: 100px; font-size: 0.72rem; font-weight: 600; }
+  .rank-badge.r1 { background: #DCFCE7; color: #15803D; }
+  .rank-badge.r2 { background: #DBEAFE; color: #1D4ED8; }
+  .rank-badge.r3 { background: #FEF9C3; color: #A16207; }
+  .rank-change { font-size: 0.72rem; color: var(--green-light); font-weight: 600; }
+
+  /* LOGOS BAR */
+  .logos-bar { background: var(--dark); padding: 32px 60px; display: flex; align-items: center; gap: 40px; overflow: hidden; }
+  .logos-label { font-size: 0.75rem; font-weight: 500; color: rgba(255,255,255,0.4); white-space: nowrap; }
+  .logos-divider { width: 1px; height: 24px; background: rgba(255,255,255,0.15); flex-shrink: 0; }
+  .logos-scroll { display: flex; gap: 48px; animation: scrollL 20s linear infinite; }
+  .logos-scroll span { font-size: 0.88rem; font-weight: 600; color: rgba(255,255,255,0.3); white-space: nowrap; letter-spacing: -0.01em; }
+  @keyframes scrollL { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+  /* ABOUT */
+  .about { padding: 120px 60px; display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: center; }
+  .section-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 0.78rem; font-weight: 600; color: var(--orange); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 20px; }
+  .section-eyebrow::before { content: ''; width: 24px; height: 2px; background: var(--orange); }
+  .section-title { font-family: 'Instrument Serif', serif; font-size: clamp(2.2rem, 4vw, 3.5rem); font-weight: 400; color: var(--dark); line-height: 1.15; margin-bottom: 24px; }
+  .section-title em { font-style: italic; color: var(--orange); }
+  .about-body { font-size: 0.95rem; line-height: 1.8; color: var(--muted); }
+  .about-body + .about-body { margin-top: 16px; }
+  .about-points { margin-top: 32px; display: flex; flex-direction: column; gap: 16px; }
+  .about-point { display: flex; gap: 14px; align-items: flex-start; }
+  .point-check { width: 22px; height: 22px; background: var(--orange); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 0.7rem; color: white; margin-top: 2px; }
+  .point-text { font-size: 0.9rem; color: var(--text); font-weight: 500; }
+  .about-cta { margin-top: 40px; }
+  .about-right { position: relative; }
+  .about-img-wrap { border-radius: 16px; overflow: hidden; background: linear-gradient(135deg, #1A3A2A, #0D2018); padding: 48px; position: relative; }
+  .about-img-wrap::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 80% 20%, rgba(232,93,38,0.2) 0%, transparent 50%); }
+  .about-quote { font-family: 'Instrument Serif', serif; font-size: 1.5rem; font-style: italic; color: white; line-height: 1.5; position: relative; z-index: 1; }
+  .about-quote::before { content: '"'; font-size: 6rem; line-height: 0; color: rgba(255,255,255,0.1); position: absolute; top: 50px; left: -10px; }
+  .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 28px; position: relative; z-index: 1; }
+  .about-stat { background: rgba(255,255,255,0.08); border-radius: 10px; padding: 20px; }
+  .about-stat-val { font-family: 'Instrument Serif', serif; font-size: 2.2rem; color: white; display: block; line-height: 1; }
+  .about-stat-label { font-size: 0.75rem; color: rgba(255,255,255,0.5); margin-top: 4px; }
+
+  /* SERVICES */
+  .services { padding: 120px 60px; background: white; }
+  .services-header { text-align: center; margin-bottom: 64px; }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .svc-card { border: 1px solid var(--border); border-radius: 12px; padding: 40px 36px; transition: all 0.3s; position: relative; overflow: hidden; }
+  .svc-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--orange); transform: scaleX(0); transition: transform 0.3s; transform-origin: left; }
+  .svc-card:hover { border-color: transparent; box-shadow: 0 16px 48px rgba(0,0,0,0.08); }
+  .svc-card:hover::after { transform: scaleX(1); }
+  .svc-emoji { font-size: 2rem; margin-bottom: 20px; display: block; }
+  .svc-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 12px; }
+  .svc-desc { font-size: 0.88rem; line-height: 1.7; color: var(--muted); font-weight: 400; }
+
+  /* PROCESS */
+  .process { padding: 120px 60px; background: var(--cream); }
+  .process-header { text-align: center; margin-bottom: 72px; }
+  .process-list { max-width: 760px; margin: 0 auto; }
+  .proc-item { display: grid; grid-template-columns: 80px 1fr; gap: 32px; margin-bottom: 0; padding: 40px 0; border-bottom: 1px solid var(--border); align-items: start; }
+  .proc-item:last-child { border-bottom: none; }
+  .proc-num { font-family: 'Instrument Serif', serif; font-size: 3.5rem; color: rgba(28,28,26,0.1); line-height: 1; text-align: right; }
+  .proc-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; }
+  .proc-desc { font-size: 0.9rem; line-height: 1.7; color: var(--muted); font-weight: 400; }
+
+  /* RESULTS */
+  .results { padding: 120px 60px; background: var(--dark); }
+  .results-header { text-align: center; margin-bottom: 64px; }
+  .results-header .section-title { color: white; }
+  .results-header .section-eyebrow { color: var(--orange); }
+  .results-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .result-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 40px; transition: all 0.3s; }
+  .result-card:hover { background: rgba(255,255,255,0.08); border-color: var(--orange); }
+  .result-tag { font-size: 0.72rem; font-weight: 600; color: var(--orange); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 24px; display: block; }
+  .result-main { font-family: 'Instrument Serif', serif; font-size: 3.5rem; color: white; line-height: 1; margin-bottom: 8px; display: block; }
+  .result-sub { font-size: 0.82rem; color: rgba(255,255,255,0.5); margin-bottom: 20px; }
+  .result-desc { font-size: 0.85rem; line-height: 1.7; color: rgba(255,255,255,0.45); font-weight: 400; }
+
+  /* TESTIMONIALS */
+  .testimonials { padding: 120px 60px; background: white; }
+  .testi-header { text-align: center; margin-bottom: 64px; }
+  .testi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .testi-card { background: var(--cream); border-radius: 12px; padding: 40px; border: 1px solid var(--border); }
+  .star-row { display: flex; gap: 4px; margin-bottom: 20px; }
+  .star { color: #F59E0B; font-size: 0.9rem; }
+  .testi-quote { font-family: 'Instrument Serif', serif; font-size: 1.1rem; font-style: italic; color: var(--dark); line-height: 1.6; margin-bottom: 28px; }
+  .testi-author { display: flex; align-items: center; gap: 12px; }
+  .tav { width: 42px; height: 42px; border-radius: 50%; background: var(--orange); display: flex; align-items: center; justify-content: center; font-size: 0.85rem; font-weight: 700; color: white; }
+  .tav-name { font-size: 0.88rem; font-weight: 600; color: var(--dark); }
+  .tav-role { font-size: 0.75rem; color: var(--muted); }
+
+  /* CTA */
+  .cta-section { padding: 120px 60px; background: var(--orange-pale); }
+  .cta-inner { max-width: 720px; margin: 0 auto; text-align: center; }
+  .cta-section .section-title { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 20px; }
+  .cta-subtitle { font-size: 1rem; color: var(--muted); margin-bottom: 52px; line-height: 1.6; }
+  .cta-form { background: white; padding: 8px 8px 8px 24px; border-radius: 12px; display: flex; align-items: center; gap: 12px; box-shadow: 0 8px 32px rgba(232,93,38,0.15); margin-bottom: 24px; }
+  .cta-form input { flex: 1; border: none; outline: none; font-family: 'Outfit', sans-serif; font-size: 0.95rem; color: var(--text); background: transparent; }
+  .cta-form input::placeholder { color: #B0ADA7; }
+  .cta-form button { background: var(--orange); color: white; border: none; padding: 14px 28px; font-family: 'Outfit', sans-serif; font-size: 0.9rem; font-weight: 600; cursor: pointer; border-radius: 8px; transition: all 0.2s; white-space: nowrap; }
+  .cta-form button:hover { background: var(--orange-light); }
+  .cta-trust-row { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .ctrust { font-size: 0.78rem; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+  .ctrust::before { content: '✓'; color: var(--green); font-weight: 700; }
+
+  /* SUBURBS */
+  .suburbs { padding: 80px 60px; background: white; border-top: 1px solid var(--border); }
+  .suburbs-title { font-family: 'Instrument Serif', serif; font-size: 1.5rem; color: var(--dark); text-align: center; margin-bottom: 32px; }
+  .suburbs-grid { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+  .suburb-tag { background: var(--cream); border: 1px solid var(--border); padding: 8px 18px; border-radius: 100px; font-size: 0.82rem; font-weight: 500; color: var(--text); transition: all 0.2s; cursor: default; }
+  .suburb-tag:hover { background: var(--orange); color: white; border-color: var(--orange); }
+
+  /* FAQ */
+  .faq { padding: 100px 60px; background: var(--cream); }
+  .faq-inner { max-width: 720px; margin: 0 auto; }
+  .faq-header { text-align: center; margin-bottom: 60px; }
+  .faq-item { background: white; border-radius: 10px; margin-bottom: 8px; overflow: hidden; border: 1px solid var(--border); }
+  .faq-q { width: 100%; background: none; border: none; padding: 22px 28px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-family: 'Outfit', sans-serif; font-size: 0.95rem; font-weight: 600; color: var(--dark); text-align: left; }
+  .faq-icon { width: 26px; height: 26px; border-radius: 50%; background: var(--cream); display: flex; align-items: center; justify-content: center; font-size: 1rem; color: var(--orange); flex-shrink: 0; transition: all 0.2s; }
+  .faq-item.open .faq-icon { background: var(--orange); color: white; }
+  .faq-a { padding: 0 28px 22px; font-size: 0.88rem; line-height: 1.75; color: var(--muted); display: none; font-weight: 400; }
+  .faq-item.open .faq-a { display: block; }
+
+  footer { background: var(--dark); padding: 80px 60px 40px; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 60px; }
+  .footer-brand { }
+  .footer-logo-text { font-family: 'Instrument Serif', serif; font-size: 1.2rem; color: white; display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
+  .footer-logo-dot { width: 8px; height: 8px; background: var(--orange); border-radius: 50%; }
+  .footer-tagline { font-size: 0.85rem; color: rgba(255,255,255,0.4); line-height: 1.6; font-weight: 400; }
+  .footer-col h5 { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 20px; }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 10px; }
+  .footer-col a { color: rgba(255,255,255,0.55); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; font-weight: 400; }
+  .footer-col a:hover { color: white; }
+  .footer-bottom { padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; align-items: center; }
+  .footer-copy { font-size: 0.78rem; color: rgba(255,255,255,0.25); }
+  .footer-links { display: flex; gap: 20px; }
+  .footer-links a { font-size: 0.78rem; color: rgba(255,255,255,0.25); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: rgba(255,255,255,0.6); }
+
+  @media(max-width:1024px) {
+    nav{padding:16px 24px}.nav-links{display:none}
+    .hero{grid-template-columns:1fr;padding:110px 24px 60px}.hero-card{display:none}
+    .about{grid-template-columns:1fr;padding:80px 24px}.about-right{display:none}
+    .services-grid,.results-grid,.testi-grid{grid-template-columns:1fr}
+    .footer-grid{grid-template-columns:1fr 1fr}
+    section,.services,.process,.results,.testimonials,.cta-section,.faq,.suburbs{padding:80px 24px !important}
+    .logos-bar{padding:24px}.footer-bottom{flex-direction:column;gap:16px;text-align:center}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo"><span class="nav-dot"></span>Best SEO Melbourne</a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <a href="#cta" class="nav-cta">Free Consultation</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="location-badge"><span class="loc-pin">📍</span> Based in Melbourne, built for Melbourne</div>
+    <h1>Your Local Melbourne<br>SEO <em>Growth</em> Partners</h1>
+    <p class="hero-text">We help Melbourne businesses attract more customers through Google. Local knowledge, proven strategies, and transparent results you can actually see — and measure.</p>
+    <div class="hero-actions">
+      <a href="#cta" class="btn-primary">Get a Free Consultation</a>
+      <a href="#results" class="btn-secondary">See our results →</a>
+    </div>
+    <div class="hero-trust">
+      <div><span class="trust-val">500+</span><div class="trust-label">Melbourne clients ranked</div></div>
+      <div><span class="trust-val">12yr</span><div class="trust-label">Local experience</div></div>
+      <div><span class="trust-val">4.9★</span><div class="trust-label">Google rating</div></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-card">
+      <div class="card-header">
+        <span class="card-title">SEO Performance Report</span>
+        <span class="card-badge">↑ This Month</span>
+      </div>
+      <div class="card-business">
+        <div class="biz-icon">⚖️</div>
+        <div>
+          <div class="biz-name">Melbourne Family Law Group</div>
+          <div class="biz-location">📍 Southbank, Melbourne</div>
+        </div>
+      </div>
+      <div class="metrics-row">
+        <div class="metric-box"><span class="metric-val green">+412%</span><div class="metric-key">Organic Traffic</div></div>
+        <div class="metric-box"><span class="metric-val">89</span><div class="metric-key">New Enquiries</div></div>
+        <div class="metric-box"><span class="metric-val">#1</span><div class="metric-key">Top Keyword</div></div>
+      </div>
+      <div class="rank-list">
+        <div class="rank-item"><span class="rank-kw">family lawyer melbourne</span><span class="rank-badge r1">#1</span><span class="rank-change">↑ 12</span></div>
+        <div class="rank-item"><span class="rank-kw">divorce lawyer melbourne</span><span class="rank-badge r1">#2</span><span class="rank-change">↑ 8</span></div>
+        <div class="rank-item"><span class="rank-kw">melbourne family solicitor</span><span class="rank-badge r2">#3</span><span class="rank-change">↑ 6</span></div>
+        <div class="rank-item" style="border:none"><span class="rank-kw">property settlement lawyer</span><span class="rank-badge r3">#5</span><span class="rank-change">↑ 9</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGOS -->
+<div class="logos-bar">
+  <span class="logos-label">Trusted by Melbourne's best</span>
+  <div class="logos-divider"></div>
+  <div class="logos-scroll">
+    <span>Fitzroy Legal</span><span>Richmond Dental Co</span><span>Southbank Finance</span>
+    <span>Port Melbourne Auto</span><span>CBD Accounting Group</span><span>Collingwood Trade</span>
+    <span>St Kilda Hospitality</span><span>Carlton Health Clinic</span>
+    <span>Fitzroy Legal</span><span>Richmond Dental Co</span><span>Southbank Finance</span>
+    <span>Port Melbourne Auto</span><span>CBD Accounting Group</span><span>Collingwood Trade</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-left">
+    <span class="section-eyebrow">Who We Are</span>
+    <h2 class="section-title">We're Not Just Another<br>Agency. We're <em>Local.</em></h2>
+    <p class="about-body">Born and raised in Melbourne. We've been helping local businesses grow online since 2012 — long before every marketing agency suddenly became an "SEO expert." We know the Melbourne market, the local search landscape, and what it actually takes to win here.</p>
+    <p class="about-body">No offshore contractors. No copy-paste strategies. Just a dedicated Melbourne team that treats your business like our own.</p>
+    <div class="about-points">
+      <div class="about-point"><div class="point-check">✓</div><span class="point-text">In-house Melbourne team — no outsourcing, ever</span></div>
+      <div class="about-point"><div class="point-check">✓</div><span class="point-text">No lock-in contracts — month-to-month flexibility</span></div>
+      <div class="about-point"><div class="point-check">✓</div><span class="point-text">Fortnightly reporting you can actually understand</span></div>
+      <div class="about-point"><div class="point-check">✓</div><span class="point-text">Dedicated account manager, not a ticketing system</span></div>
+    </div>
+    <div class="about-cta">
+      <a href="#cta" class="btn-primary">Let's Talk About Your Business</a>
+    </div>
+  </div>
+  <div class="about-right">
+    <div class="about-img-wrap">
+      <p class="about-quote">We've helped more than 500 Melbourne businesses grow from page 2 obscurity to page 1 visibility. Your story could be next.</p>
+      <div class="about-stats">
+        <div class="about-stat"><span class="about-stat-val">500+</span><div class="about-stat-label">Clients ranked page 1</div></div>
+        <div class="about-stat"><span class="about-stat-val">98%</span><div class="about-stat-label">Client retention rate</div></div>
+        <div class="about-stat"><span class="about-stat-val">4.9x</span><div class="about-stat-label">Avg traffic increase</div></div>
+        <div class="about-stat"><span class="about-stat-val">$0</span><div class="about-stat-label">Lock-in contract fee</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-header">
+    <span class="section-eyebrow">Our Services</span>
+    <h2 class="section-title">Everything You Need to<br>Win on <em>Google</em></h2>
+  </div>
+  <div class="services-grid">
+    <div class="svc-card"><span class="svc-emoji">📍</span><h3 class="svc-title">Local SEO Melbourne</h3><p class="svc-desc">Google Maps Pack, suburb-level targeting, and Google Business Profile optimisation. Get found by Melbourne customers searching near you.</p></div>
+    <div class="svc-card"><span class="svc-emoji">⚙️</span><h3 class="svc-title">Technical SEO</h3><p class="svc-desc">Site speed, Core Web Vitals, crawlability, schema markup. Fix the technical foundations that Google rewards with higher rankings.</p></div>
+    <div class="svc-card"><span class="svc-emoji">✍️</span><h3 class="svc-title">SEO Content Strategy</h3><p class="svc-desc">Keyword research, topical authority, and high-intent content that captures search traffic and converts it into customers.</p></div>
+    <div class="svc-card"><span class="svc-emoji">🛒</span><h3 class="svc-title">E-Commerce SEO</h3><p class="svc-desc">Product page and category optimisation for Shopify, WooCommerce, and Magento. More organic traffic, more sales — fewer ad dollars.</p></div>
+    <div class="svc-card"><span class="svc-emoji">🔗</span><h3 class="svc-title">Authority Link Building</h3><p class="svc-desc">Genuine, editorial backlinks from trusted Australian publishers. Build domain authority the right way — no shortcuts, no spam.</p></div>
+    <div class="svc-card"><span class="svc-emoji">📊</span><h3 class="svc-title">SEO Reporting & Analytics</h3><p class="svc-desc">Clear, plain-language reports every fortnight. Know exactly what's been done, what's working, and what the next steps are.</p></div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="process-header">
+    <span class="section-eyebrow">How It Works</span>
+    <h2 class="section-title">Simple, Transparent,<br><em>Effective</em></h2>
+  </div>
+  <div class="process-list">
+    <div class="proc-item"><div class="proc-num">01</div><div><h3 class="proc-title">Free Consultation & Site Audit</h3><p class="proc-desc">We start with a free 30-minute consultation and a detailed audit of your website. You'll know exactly where you stand, what's working, and what's holding you back — even if you don't become a client.</p></div></div>
+    <div class="proc-item"><div class="proc-num">02</div><div><h3 class="proc-title">Custom SEO Strategy</h3><p class="proc-desc">We build a bespoke 12-month roadmap for your business — specific keywords, content priorities, technical fixes, and link acquisition goals. Tailored to your market, your competitors, and your budget.</p></div></div>
+    <div class="proc-item"><div class="proc-num">03</div><div><h3 class="proc-title">In-House Execution</h3><p class="proc-desc">Our Melbourne team does the work. Every technical fix, every content piece, every outreach email — handled in-house. You'll have a dedicated account manager and fortnightly updates throughout.</p></div></div>
+    <div class="proc-item"><div class="proc-num">04</div><div><h3 class="proc-title">Grow & Compound</h3><p class="proc-desc">SEO results compound over time. Most clients see meaningful growth by month 4–6, and their best results in year 2. We're in this for the long haul — and so should you be.</p></div></div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section class="results" id="results">
+  <div class="results-header">
+    <span class="section-eyebrow">Case Studies</span>
+    <h2 class="section-title">Real Results for Real<br>Melbourne Businesses</h2>
+  </div>
+  <div class="results-grid">
+    <div class="result-card"><span class="result-tag">Legal · Melbourne CBD</span><span class="result-main">+412%</span><div class="result-sub">Organic traffic in 8 months</div><p class="result-desc">A Melbourne CBD law firm went from page 3 to #1 for 23 commercial keywords. New enquiries grew from 12 to 89 per month — an 18× return on their SEO investment.</p></div>
+    <div class="result-card"><span class="result-tag">E-Commerce · Australia-wide</span><span class="result-main">$2.1M</span><div class="result-sub">Annual organic revenue (from $310K)</div><p class="result-desc">Melbourne-founded online retailer scaled to $2.1M in annual organic revenue in 14 months through category architecture overhaul and targeted link building.</p></div>
+    <div class="result-card"><span class="result-tag">Medical · South Melbourne</span><span class="result-main">3×</span><div class="result-sub">New patients from organic search</div><p class="result-desc">#1 in the Google Map Pack for all primary treatment keywords. Monthly new patient enquiries from organic search tripled within 6 months of starting.</p></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="testi-header">
+    <span class="section-eyebrow">Testimonials</span>
+    <h2 class="section-title">Don't Just Take<br>Our Word for <em>It</em></h2>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card"><div class="star-row"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testi-quote">"The team genuinely cares about our business. They took the time to understand our clients, our services, our goals — and built a strategy around that. Our organic leads have tripled."</p><div class="testi-author"><div class="tav">JM</div><div><div class="tav-name">James Mitchell</div><div class="tav-role">Director, Mitchell Family Law</div></div></div></div>
+    <div class="testi-card"><div class="star-row"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testi-quote">"We tried two agencies before. The difference is night and day. These are actual Melbourne people who know the market — and their results back it up. Organic is now our biggest acquisition channel."</p><div class="testi-author"><div class="tav">SP</div><div><div class="tav-name">Sarah Patel</div><div class="tav-role">Co-Founder, Urban Goods Co</div></div></div></div>
+    <div class="testi-card"><div class="star-row"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testi-quote">"Six months in we were #1 for all our top keywords. The monthly reports are clear, honest, and actually show you what's happening. Best marketing investment we've ever made."</p><div class="testi-author"><div class="tav">RL</div><div><div class="tav-name">Dr. Rebecca Lowe</div><div class="tav-role">Principal, South Melbourne Dental</div></div></div></div>
+    <div class="testi-card"><div class="star-row"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><p class="testi-quote">"We're in a very competitive local market and they absolutely delivered. Top of the map pack in 90 days, phone bookings up 4× — and no lock-in contract so we felt zero pressure."</p><div class="testi-author"><div class="tav">TC</div><div><div class="tav-name">Tom Chen</div><div class="tav-role">Owner, Melbourne Plumbing Solutions</div></div></div></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="cta">
+  <div class="cta-inner">
+    <span class="section-eyebrow">Get Started</span>
+    <h2 class="section-title">Ready to Grow Your<br><em>Melbourne Business?</em></h2>
+    <p class="cta-subtitle">Book a free, no-obligation consultation with a Melbourne SEO expert. We'll review your website, identify your biggest opportunities, and give you an honest picture of what's possible.</p>
+    <div class="cta-form">
+      <input type="email" placeholder="Enter your website URL or email address" />
+      <button>Get Free Consultation</button>
+    </div>
+    <div class="cta-trust-row">
+      <span class="ctrust">No lock-in contracts</span>
+      <span class="ctrust">Reply within 24 hours</span>
+      <span class="ctrust">Melbourne-based team</span>
+      <span class="ctrust">100% confidential</span>
+    </div>
+  </div>
+</section>
+
+<!-- SUBURBS -->
+<section class="suburbs">
+  <h3 class="suburbs-title">We serve Melbourne businesses across every suburb</h3>
+  <div class="suburbs-grid">
+    <span class="suburb-tag">CBD</span><span class="suburb-tag">Southbank</span><span class="suburb-tag">Fitzroy</span>
+    <span class="suburb-tag">Collingwood</span><span class="suburb-tag">Richmond</span><span class="suburb-tag">South Yarra</span>
+    <span class="suburb-tag">St Kilda</span><span class="suburb-tag">Prahran</span><span class="suburb-tag">Carlton</span>
+    <span class="suburb-tag">Brunswick</span><span class="suburb-tag">Hawthorn</span><span class="suburb-tag">Camberwell</span>
+    <span class="suburb-tag">Brighton</span><span class="suburb-tag">Port Melbourne</span><span class="suburb-tag">Docklands</span>
+    <span class="suburb-tag">Williamstown</span><span class="suburb-tag">Footscray</span><span class="suburb-tag">Northcote</span>
+    <span class="suburb-tag">Essendon</span><span class="suburb-tag">Moonee Ponds</span><span class="suburb-tag">Box Hill</span>
+    <span class="suburb-tag">Dandenong</span><span class="suburb-tag">Frankston</span><span class="suburb-tag">Knox</span>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="faq-inner">
+    <div class="faq-header">
+      <span class="section-eyebrow">FAQ</span>
+      <h2 class="section-title">Your Questions,<br><em>Answered</em></h2>
+    </div>
+    <div class="faq-item open"><button class="faq-q">How soon will I see results from SEO? <div class="faq-icon">−</div></button><p class="faq-a">Most Melbourne clients start seeing ranking movement within 60–90 days, with noticeable traffic and enquiry growth by months 4–6. We'll give you an honest, data-driven timeline during your free consultation based on your specific market and website.</p></div>
+    <div class="faq-item"><button class="faq-q">Are there lock-in contracts? <div class="faq-icon">+</div></button><p class="faq-a">No. We work on month-to-month agreements. We believe in earning your continued business through results, not contracts. That said, the best SEO results come from sustained effort over 12+ months.</p></div>
+    <div class="faq-item"><button class="faq-q">How much does SEO cost? <div class="faq-icon">+</div></button><p class="faq-a">Our programs start from $1,500/month for small local businesses. We'll give you a clear, fixed-price quote after your free consultation — no hidden fees, no surprise invoices.</p></div>
+    <div class="faq-item"><button class="faq-q">Is your team actually based in Melbourne? <div class="faq-icon">+</div></button><p class="faq-a">Yes — 100%. Our entire SEO team is Melbourne-based. We never outsource your work to overseas contractors. You'll work with a dedicated Melbourne consultant who knows your market firsthand.</p></div>
+    <div class="faq-item"><button class="faq-q">What industries do you work with? <div class="faq-icon">+</div></button><p class="faq-a">We work with Melbourne businesses across all industries — legal, medical, trades, finance, e-commerce, hospitality, real estate, and professional services. Our approach is customised to your specific sector and competitive landscape.</p></div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand"><div class="footer-logo-text"><span class="footer-logo-dot"></span>Best SEO Melbourne</div><p class="footer-tagline">Melbourne's most trusted local SEO agency. Helping businesses grow organically since 2012. No lock-in contracts. Real people. Real results.</p></div>
+    <div class="footer-col"><h5>Services</h5><ul><li><a href="#">Local SEO</a></li><li><a href="#">Technical SEO</a></li><li><a href="#">Content SEO</a></li><li><a href="#">E-Commerce SEO</a></li><li><a href="#">Link Building</a></li></ul></div>
+    <div class="footer-col"><h5>Company</h5><ul><li><a href="#">About Us</a></li><li><a href="#">Case Studies</a></li><li><a href="#">Blog</a></li><li><a href="#">Careers</a></li></ul></div>
+    <div class="footer-col"><h5>Contact</h5><ul><li><a href="tel:0390000000">03 9000 0000</a></li><li><a href="mailto:hello@bestseomelbourne.com.au">hello@bestseomelbourne.com.au</a></li><li><a href="#">200 Queen St<br>Melbourne VIC 3000</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 Best SEO Agency Melbourne Pty Ltd · ABN 00 000 000 000</span>
+    <div class="footer-links"><a href="#">Privacy Policy</a><a href="#">Terms</a><a href="#">Sitemap</a></div>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => { i.classList.remove('open'); i.querySelector('.faq-icon').textContent = '+'; });
+      if (!isOpen) { item.classList.add('open'); btn.querySelector('.faq-icon').textContent = '−'; }
+    });
+  });
+  const observer = new IntersectionObserver(e => e.forEach(el => { if (el.isIntersecting) { el.target.style.opacity='1'; el.target.style.transform='translateY(0)'; } }), { threshold: 0.1 });
+  document.querySelectorAll('.svc-card,.result-card,.testi-card,.proc-item').forEach(el => { el.style.opacity='0'; el.style.transform='translateY(20px)'; el.style.transition='opacity 0.55s ease, transform 0.55s ease'; observer.observe(el); });
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    nav.style.boxShadow = window.scrollY > 50 ? '0 4px 20px rgba(0,0,0,0.08)' : 'none';
+  });
+</script>
+</body>
+</html>
