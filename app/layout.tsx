@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Instrument_Serif, Outfit } from "next/font/google";
+import { SiteFooter } from "./components/site-footer";
+import { SiteNav } from "./components/site-nav";
 import "./globals.css";
 
 const outfit = Outfit({
@@ -30,7 +32,11 @@ export default function RootLayout({
       lang="en"
       className={`${outfit.variable} ${instrumentSerif.variable} antialiased`}
     >
-      <body className="flex min-h-screen flex-col font-sans">{children}</body>
+      <body className="flex min-h-screen flex-col font-sans">
+        <SiteNav />
+        <main className="flex-1">{children}</main>
+        <SiteFooter />
+      </body>
     </html>
   );
 }

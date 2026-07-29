@@ -2,19 +2,19 @@ const columns = [
   {
     heading: "Services",
     links: [
-      { label: "Local SEO", href: "#services" },
-      { label: "Technical SEO", href: "#services" },
-      { label: "Content SEO", href: "#services" },
-      { label: "E-Commerce SEO", href: "#services" },
-      { label: "Link Building", href: "#services" },
+      { label: "Local SEO", href: "/#services" },
+      { label: "Technical SEO", href: "/#services" },
+      { label: "Content SEO", href: "/#services" },
+      { label: "E-Commerce SEO", href: "/#services" },
+      { label: "Link Building", href: "/#services" },
     ],
   },
   {
     heading: "Company",
     links: [
-      { label: "About Us", href: "#about" },
-      { label: "Case Studies", href: "#results" },
-      { label: "Blog", href: "#" },
+      { label: "About Us", href: "/#about" },
+      { label: "Case Studies", href: "/#results" },
+      { label: "Blog", href: "/blog" },
       { label: "Careers", href: "#" },
     ],
   },

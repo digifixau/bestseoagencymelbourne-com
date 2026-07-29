@@ -1,12 +1,15 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
+// Root-relative so they still resolve from /blog, not just the home page.
 const links = [
-  { href: "#services", label: "Services" },
-  { href: "#results", label: "Results" },
-  { href: "#process", label: "Process" },
-  { href: "#faq", label: "FAQ" },
+  { href: "/#services", label: "Services" },
+  { href: "/#results", label: "Results" },
+  { href: "/#process", label: "Process" },
+  { href: "/blog", label: "Blog" },
+  { href: "/#faq", label: "FAQ" },
 ];
 
 export function SiteNav() {
@@ -25,31 +28,31 @@ export function SiteNav() {
         scrolled ? "shadow-[0_4px_20px_rgba(0,0,0,0.08)]" : "shadow-none"
       }`}
     >
-      <a
-        href="#"
+      <Link
+        href="/"
         className="flex items-center gap-2.5 font-serif text-[1.15rem] text-ink"
       >
         <span className="h-2 w-2 rounded-full bg-brand" />
         Best SEO Melbourne
-      </a>
+      </Link>
       <ul className="hidden gap-9 lg:flex">
         {links.map((link) => (
           <li key={link.href}>
-            <a
+            <Link
               href={link.href}
               className="text-[0.88rem] font-medium text-muted transition-colors duration-200 hover:text-ink"
             >
               {link.label}
-            </a>
+            </Link>
           </li>
         ))}
       </ul>
-      <a
-        href="#cta"
+      <Link
+        href="/#cta"
         className="rounded-md bg-brand px-6.5 py-3 text-[0.85rem] font-semibold text-white transition-all duration-200 hover:-translate-y-px hover:bg-brand-light hover:shadow-[0_6px_20px_rgba(232,93,38,0.3)]"
       >
         Free Consultation
-      </a>
+      </Link>
     </nav>
   );
 }
