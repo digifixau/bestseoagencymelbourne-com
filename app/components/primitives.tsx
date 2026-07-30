@@ -1,9 +1,9 @@
 import type { ReactNode } from "react";
 
-/** Section label with the short orange rule, e.g. "— OUR SERVICES". */
+/** Gold uppercase section label, e.g. "OUR SERVICES". */
 export function Eyebrow({ children }: { children: ReactNode }) {
   return (
-    <span className="mb-5 inline-flex items-center gap-2 text-[0.78rem] font-semibold tracking-[0.05em] text-brand uppercase before:h-0.5 before:w-6 before:bg-brand before:content-['']">
+    <span className="mb-4 block text-xs font-bold tracking-[0.18em] text-gold uppercase">
       {children}
     </span>
   );
@@ -19,17 +19,27 @@ export function SectionTitle({
 }) {
   return (
     <h2
-      className={`mb-6 font-serif text-[clamp(2.2rem,4vw,3.5rem)] leading-[1.15] text-ink ${className}`}
+      className={`mb-5 font-serif text-[clamp(2.2rem,4vw,3.4rem)] leading-[1.12] tracking-[-0.02em] text-cream ${className}`}
     >
       {children}
     </h2>
   );
 }
 
-/** Italic orange emphasis used inside headings. */
+/** Italic gold emphasis used inside headings. */
 export function Accent({ children }: { children: ReactNode }) {
-  return <em className="text-brand italic">{children}</em>;
+  return <em className="text-gold italic">{children}</em>;
+}
+
+/** Short gold rule used under headings, matching the reference's `.divider`. */
+export function Divider({ center = false }: { center?: boolean }) {
+  return (
+    <div
+      aria-hidden="true"
+      className={`my-6 h-0.5 w-12 bg-gold ${center ? "mx-auto" : ""}`}
+    />
+  );
 }
 
 export const primaryButton =
-  "inline-block rounded-lg bg-brand px-9 py-4 text-[0.92rem] font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-brand-light hover:shadow-[0_8px_24px_rgba(232,93,38,0.3)]";
+  "inline-block rounded bg-gold px-9.5 py-4.5 text-base font-bold tracking-[0.02em] text-navy transition-all duration-200 hover:-translate-y-0.5 hover:bg-gold-2 hover:shadow-[0_10px_30px_rgba(200,151,60,0.35)]";

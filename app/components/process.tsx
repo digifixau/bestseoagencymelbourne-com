@@ -1,62 +1,64 @@
-import { Accent, Eyebrow, SectionTitle } from "./primitives";
+import { Accent, Divider, Eyebrow, SectionTitle } from "./primitives";
 import { Reveal } from "./reveal";
 
 const steps = [
   {
-    number: "01",
-    title: "Free Consultation & Site Audit",
+    number: "1",
+    title: "Deep Audit",
     description:
-      "We start with a free 30-minute consultation and a detailed audit of your website. You'll know exactly where you stand, what's working, and what's holding you back — even if you don't become a client.",
+      "Comprehensive analysis of your site, competitors, backlink profile, and market opportunity. You'll receive a 40-point report identifying exactly what's holding you back.",
   },
   {
-    number: "02",
-    title: "Custom SEO Strategy",
+    number: "2",
+    title: "Strategy Build",
     description:
-      "We build a bespoke 12-month roadmap for your business — specific keywords, content priorities, technical fixes, and link acquisition goals. Tailored to your market, your competitors, and your budget.",
+      "A bespoke 12-month roadmap with prioritised keyword targets, content calendar, technical fixes, and link acquisition plan — aligned to your revenue goals.",
   },
   {
-    number: "03",
-    title: "In-House Execution",
+    number: "3",
+    title: "Expert Execution",
     description:
-      "Our Melbourne team does the work. Every technical fix, every content piece, every outreach email — handled in-house. You'll have a dedicated account manager and fortnightly updates throughout.",
+      "Our in-house team implements everything. Technical fixes, content creation, outreach — with fortnightly reporting you can actually understand and act on.",
   },
   {
-    number: "04",
-    title: "Grow & Compound",
+    number: "4",
+    title: "Compound Growth",
     description:
-      "SEO results compound over time. Most clients see meaningful growth by month 4–6, and their best results in year 2. We're in this for the long haul — and so should you be.",
+      "SEO compounds over time. Clients in their second year consistently see 2–3× the results of their first year. The earlier you start, the greater your compounding advantage.",
   },
 ];
 
 export function Process() {
   return (
-    <section id="process" className="bg-cream px-6 py-20 lg:px-15 lg:py-30">
-      <div className="mb-18 text-center">
-        <Eyebrow>How It Works</Eyebrow>
+    <section id="process" aria-labelledby="process-heading" className="px-6 py-20 lg:px-15 lg:py-30">
+      <div className="mb-0 text-center">
+        <Eyebrow>Our Process</Eyebrow>
         <SectionTitle className="mb-0">
-          Simple, Transparent,
+          A Proven System for
           <br />
-          <Accent>Effective</Accent>
+          <Accent>Ranking & Revenue</Accent>
         </SectionTitle>
+        <Divider center />
       </div>
 
-      <div className="mx-auto max-w-[760px]">
-        {steps.map((step, index) => (
-          <Reveal
-            key={step.number}
-            className={`grid grid-cols-[80px_1fr] items-start gap-8 py-10 ${
-              index === steps.length - 1 ? "" : "border-b border-line"
-            }`}
-          >
-            <div className="text-right font-serif text-[3.5rem] leading-none text-ink/10">
-              {step.number}
+      <div className="relative mt-16 grid grid-cols-1 gap-px sm:grid-cols-2 lg:grid-cols-4">
+        <div
+          aria-hidden="true"
+          className="absolute inset-x-[12.5%] top-10 hidden h-px bg-[linear-gradient(to_right,var(--color-gold)_0%,rgba(200,151,60,0.1)_100%)] lg:block"
+        />
+        {steps.map((step) => (
+          <Reveal key={step.number} className="px-4 text-center">
+            <div className="relative z-1 mx-auto mb-7 flex h-20 w-20 items-center justify-center rounded-full border-2 border-gold bg-navy">
+              <span className="font-serif text-2xl font-bold text-gold">
+                {step.number}
+              </span>
             </div>
-            <div>
-              <h3 className="mb-2.5 text-[1.1rem] font-bold">{step.title}</h3>
-              <p className="text-[0.9rem] leading-[1.7] text-muted">
-                {step.description}
-              </p>
-            </div>
+            <h3 className="mb-3 font-serif text-lg font-semibold text-cream">
+              {step.title}
+            </h3>
+            <p className="text-sm leading-[1.7] font-light text-slate">
+              {step.description}
+            </p>
           </Reveal>
         ))}
       </div>

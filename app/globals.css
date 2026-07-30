@@ -1,24 +1,26 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand: #e85d26;
-  --color-brand-light: #ff7a45;
-  --color-brand-pale: #fff4ef;
-  --color-forest: #1a6b4a;
-  --color-mint: #22c07a;
-  --color-cream: #fdfaf5;
-  --color-ink: #1c1c1a;
-  --color-body: #2d2d2a;
-  --color-muted: #6e6b65;
-  --color-line: #e8e4dc;
+  --color-navy: #0c1829;
+  --color-navy-2: #111f35;
+  --color-navy-3: #162840;
+  --color-navy-4: #1d3452;
+  --color-gold: #c8973c;
+  --color-gold-2: #dfb25a;
+  --color-gold-pale: #fdf6e8;
+  --color-cream: #f9f5ee;
+  --color-slate: #8898aa;
+  --color-border-gold: rgba(200, 151, 60, 0.18);
 
-  --font-sans: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
+  --font-sans: var(--font-lato), Georgia, sans-serif;
+  --font-serif: var(--font-playfair), Georgia, serif;
 
   --animate-float-in: float-in 0.7s ease both;
   --animate-rise: rise 0.7s ease both;
   --animate-pop: pop 0.8s ease both;
   --animate-marquee: marquee 20s linear infinite;
+  --animate-pulse-dot: pulse-dot 2s infinite;
+  --animate-bar-grow: bar-grow 1.5s 0.8s ease both;
 }
 
 @keyframes float-in {
@@ -63,6 +65,27 @@
   }
 }
 
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4);
+  }
+  50% {
+    opacity: 0.8;
+    box-shadow: 0 0 0 6px transparent;
+  }
+}
+
+@keyframes bar-grow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(0.82);
+  }
+}
+
 html {
   scroll-behavior: smooth;
   /* `clip` contains overflow without turning the element into a scroll
@@ -71,8 +94,8 @@ html {
 }
 
 body {
-  background: var(--color-cream);
-  color: var(--color-body);
+  background: var(--color-navy);
+  color: var(--color-cream);
 }
 
 /*
@@ -83,7 +106,7 @@ body {
 .wp-content {
   font-size: 1rem;
   line-height: 1.8;
-  color: var(--color-body);
+  color: rgba(249, 245, 238, 0.7);
 }
 
 .wp-content > * + * {
@@ -94,7 +117,7 @@ body {
 .wp-content h3,
 .wp-content h4 {
   font-family: var(--font-serif);
-  color: var(--color-ink);
+  color: var(--color-cream);
   line-height: 1.25;
   margin-top: 3rem;
 }
@@ -112,18 +135,18 @@ body {
 }
 
 .wp-content a {
-  color: var(--color-brand);
+  color: var(--color-gold);
   text-decoration: underline;
   text-underline-offset: 3px;
 }
 
 .wp-content a:hover {
-  color: var(--color-brand-light);
+  color: var(--color-gold-2);
 }
 
 .wp-content strong {
   font-weight: 600;
-  color: var(--color-ink);
+  color: var(--color-cream);
 }
 
 .wp-content ul,
@@ -144,12 +167,12 @@ body {
 }
 
 .wp-content blockquote {
-  border-left: 3px solid var(--color-brand);
+  border-left: 3px solid var(--color-gold);
   padding-left: 1.5rem;
   font-family: var(--font-serif);
   font-size: 1.25rem;
   font-style: italic;
-  color: var(--color-ink);
+  color: var(--color-cream);
 }
 
 .wp-content img,
@@ -163,20 +186,20 @@ body {
 .wp-content figcaption {
   margin-top: 0.75rem;
   font-size: 0.8rem;
-  color: var(--color-muted);
+  color: var(--color-slate);
 }
 
 .wp-content code {
-  background: var(--color-cream);
-  border: 1px solid var(--color-line);
+  background: var(--color-navy-3);
+  border: 1px solid var(--color-border-gold);
   border-radius: 0.25rem;
   padding: 0.1em 0.4em;
   font-size: 0.9em;
 }
 
 .wp-content pre {
-  background: var(--color-ink);
-  color: #f5f5f0;
+  background: var(--color-navy-3);
+  color: var(--color-cream);
   border-radius: 0.75rem;
   padding: 1.25rem;
   overflow-x: auto;
@@ -196,7 +219,7 @@ body {
 
 .wp-content th,
 .wp-content td {
-  border: 1px solid var(--color-line);
+  border: 1px solid var(--color-border-gold);
   padding: 0.6rem 0.9rem;
   text-align: left;
 }

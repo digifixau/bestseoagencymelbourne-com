@@ -3,25 +3,30 @@
 export function ConsultationForm() {
   return (
     <form
+      action="/submit-audit"
+      method="POST"
+      aria-label="Request your free SEO audit"
       onSubmit={(event) => event.preventDefault()}
-      className="mb-6 flex flex-col items-center gap-3 rounded-xl bg-white p-2 shadow-[0_8px_32px_rgba(232,93,38,0.15)] sm:flex-row sm:pl-6"
+      className="mx-auto mb-6 flex max-w-[520px] flex-col gap-0 sm:flex-row"
     >
-      <label htmlFor="consultation-contact" className="sr-only">
-        Your website URL or email address
+      <label htmlFor="cta-url" className="sr-only">
+        Your website URL
       </label>
       <input
-        id="consultation-contact"
-        name="contact"
-        type="text"
-        inputMode="email"
-        placeholder="Enter your website URL or email address"
-        className="w-full flex-1 bg-transparent px-4 py-3 text-[0.95rem] text-body outline-none placeholder:text-[#B0ADA7] sm:px-0 sm:py-0"
+        id="cta-url"
+        name="website_url"
+        type="url"
+        required
+        autoComplete="url"
+        aria-required="true"
+        placeholder="yourwebsite.com.au"
+        className="w-full flex-1 rounded border border-border-gold bg-white/6 px-5.5 py-4.5 text-base text-cream outline-none placeholder:text-slate focus:border-gold sm:rounded-r-none sm:border-r-0"
       />
       <button
         type="submit"
-        className="w-full cursor-pointer rounded-lg bg-brand px-7 py-3.5 text-[0.9rem] font-semibold whitespace-nowrap text-white transition-colors duration-200 hover:bg-brand-light sm:w-auto"
+        className="cursor-pointer rounded bg-gold px-8 py-4.5 text-sm font-bold tracking-[0.04em] whitespace-nowrap text-navy transition-colors duration-200 hover:bg-gold-2 sm:rounded-l-none"
       >
-        Get Free Consultation
+        Get Free Audit →
       </button>
     </form>
   );

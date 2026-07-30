@@ -1,33 +1,33 @@
 "use client";
 
 import { useState } from "react";
-import { Accent, Eyebrow, SectionTitle } from "./primitives";
+import { Divider, Eyebrow } from "./primitives";
 
 const faqs = [
   {
-    question: "How soon will I see results from SEO?",
+    question: "How long does SEO take to show results in Melbourne?",
     answer:
-      "Most Melbourne clients start seeing ranking movement within 60–90 days, with noticeable traffic and enquiry growth by months 4–6. We'll give you an honest, data-driven timeline during your free consultation based on your specific market and website.",
+      "Most Melbourne businesses see measurable ranking movement within 60–90 days, with significant traffic and lead growth by months 4–6. Highly competitive keywords may take 8–12 months. We provide honest, data-backed timelines during your free audit — never inflated promises to win a sale.",
   },
   {
-    question: "Are there lock-in contracts?",
+    question: "How much does professional SEO cost in Melbourne?",
     answer:
-      "No. We work on month-to-month agreements. We believe in earning your continued business through results, not contracts. That said, the best SEO results come from sustained effort over 12+ months.",
+      "Our Melbourne SEO programs start from $1,500/month for small local businesses and scale based on market competitiveness, site size, and goals. Typical mid-market programs run $2,500–$5,000/month. We provide a transparent, fixed-price proposal after your free audit — no hidden fees, no scope creep.",
   },
   {
-    question: "How much does SEO cost?",
+    question: "Do you offer lock-in SEO contracts?",
     answer:
-      "Our programs start from $1,500/month for small local businesses. We'll give you a clear, fixed-price quote after your free consultation — no hidden fees, no surprise invoices.",
+      "No. All our SEO services operate on month-to-month agreements with 30 days' notice to cancel. We believe results — not contracts — should be the reason you stay. 98% of our clients have been with us for 12+ months because of the results we deliver.",
   },
   {
-    question: "Is your team actually based in Melbourne?",
+    question: "Can you guarantee first-page rankings?",
     answer:
-      "Yes — 100%. Our entire SEO team is Melbourne-based. We never outsource your work to overseas contractors. You'll work with a dedicated Melbourne consultant who knows your market firsthand.",
+      "Any agency that guarantees specific rankings is being dishonest — no one controls Google's algorithm. What we guarantee is best-practice, white-hat SEO execution, complete transparency, and a 12-year track record of 89% of clients achieving page 1 for their primary commercial keywords within 6 months.",
   },
   {
-    question: "What industries do you work with?",
+    question: "What industries do you specialise in?",
     answer:
-      "We work with Melbourne businesses across all industries — legal, medical, trades, finance, e-commerce, hospitality, real estate, and professional services. Our approach is customised to your specific sector and competitive landscape.",
+      "We work across all industries but have particular depth in: legal, medical and allied health, e-commerce (all major platforms), finance and accounting, trade services, real estate, and SaaS. Our in-house team has vertical-specific keyword data and content expertise across all major Melbourne market sectors.",
   },
 ];
 
@@ -35,38 +35,37 @@ export function Faq() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="bg-cream px-6 py-20 lg:px-15 lg:py-25">
-      <div className="mx-auto max-w-[720px]">
-        <div className="mb-15 text-center">
-          <Eyebrow>FAQ</Eyebrow>
-          <SectionTitle className="mb-0">
-            Your Questions,
-            <br />
-            <Accent>Answered</Accent>
-          </SectionTitle>
-        </div>
+    <section id="faq" aria-labelledby="faq-heading" className="px-6 py-20 lg:px-15 lg:py-30">
+      <div className="mb-12 text-center">
+        <Eyebrow>FAQ</Eyebrow>
+        <h2
+          id="faq-heading"
+          className="font-serif text-[clamp(2.2rem,4vw,3.4rem)] leading-[1.12] tracking-[-0.02em] text-cream"
+        >
+          Frequently Asked Questions
+        </h2>
+        <Divider center />
+      </div>
 
+      <div role="list" className="mx-auto max-w-200">
         {faqs.map((faq, index) => {
           const isOpen = openIndex === index;
           const panelId = `faq-panel-${index}`;
 
           return (
-            <div
-              key={faq.question}
-              className="mb-2 overflow-hidden rounded-[10px] border border-line bg-white"
-            >
+            <div key={faq.question} role="listitem" className="border-b border-border-gold">
               <button
                 type="button"
                 aria-expanded={isOpen}
                 aria-controls={panelId}
                 onClick={() => setOpenIndex(isOpen ? null : index)}
-                className="flex w-full cursor-pointer items-center justify-between gap-4 px-7 py-5.5 text-left text-[0.95rem] font-semibold text-ink"
+                className="flex w-full cursor-pointer items-center justify-between gap-4 py-6 text-left text-base font-bold text-cream transition-colors duration-200 hover:text-gold"
               >
                 {faq.question}
                 <span
                   aria-hidden="true"
-                  className={`flex h-6.5 w-6.5 shrink-0 items-center justify-center rounded-full text-base transition-all duration-200 ${
-                    isOpen ? "bg-brand text-white" : "bg-cream text-brand"
+                  className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-border-gold text-base transition-all duration-200 ${
+                    isOpen ? "border-gold bg-gold text-navy" : "text-gold"
                   }`}
                 >
                   {isOpen ? "−" : "+"}
@@ -75,7 +74,7 @@ export function Faq() {
               {isOpen && (
                 <p
                   id={panelId}
-                  className="px-7 pb-5.5 text-[0.88rem] leading-[1.75] text-muted"
+                  className="pb-6 text-sm leading-[1.8] font-light text-cream/60"
                 >
                   {faq.answer}
                 </p>

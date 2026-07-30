@@ -1,57 +1,67 @@
-import { Eyebrow } from "./primitives";
+import { Accent, Divider, Eyebrow, SectionTitle } from "./primitives";
 import { Reveal } from "./reveal";
 
 const caseStudies = [
   {
     tag: "Legal · Melbourne CBD",
     headline: "+412%",
-    sub: "Organic traffic in 8 months",
+    metric: "Organic Traffic — 8 Months",
     description:
-      "A Melbourne CBD law firm went from page 3 to #1 for 23 commercial keywords. New enquiries grew from 12 to 89 per month — an 18× return on their SEO investment.",
+      "A Melbourne CBD family law firm went from page 3 to ranking #1 for 23 high-intent commercial keywords. Monthly organic enquiries increased from 12 to 89, delivering an 18× return on SEO investment. Achieved through technical audit, content authority build-out, and targeted link acquisition from legal publisher domains.",
   },
   {
-    tag: "E-Commerce · Australia-wide",
+    tag: "E-Commerce · Nationwide",
     headline: "$2.1M",
-    sub: "Annual organic revenue (from $310K)",
+    metric: "Annual Organic Revenue — 14 Months",
     description:
-      "Melbourne-founded online retailer scaled to $2.1M in annual organic revenue in 14 months through category architecture overhaul and targeted link building.",
+      "A Melbourne-founded online homewares retailer scaled from $310K to $2.1M in annual organic revenue. Category architecture overhaul, 680% organic traffic increase, and 142 new page 1 keywords. Now generating more revenue from SEO than from paid advertising combined.",
   },
   {
     tag: "Medical · South Melbourne",
     headline: "3×",
-    sub: "New patients from organic search",
+    metric: "New Patient Enquiries — 6 Months",
     description:
-      "#1 in the Google Map Pack for all primary treatment keywords. Monthly new patient enquiries from organic search tripled within 6 months of starting.",
+      "South Melbourne medical clinic achieved #1 in the Google Maps Pack for all 14 primary treatment keywords. New patient bookings from organic search tripled in 6 months. GBP optimisation, local citation building, and E-E-A-T content positioning were the primary drivers.",
   },
 ];
 
 export function Results() {
   return (
-    <section id="results" className="bg-ink px-6 py-20 lg:px-15 lg:py-30">
-      <div className="mb-16 text-center">
-        <Eyebrow>Case Studies</Eyebrow>
-        <h2 className="font-serif text-[clamp(2.2rem,4vw,3.5rem)] leading-[1.15] text-white">
-          Real Results for Real
-          <br />
-          Melbourne Businesses
-        </h2>
-      </div>
+    <section
+      id="results"
+      aria-labelledby="results-heading"
+      className="bg-navy-2 px-6 py-20 lg:px-15 lg:py-30"
+    >
+      <Eyebrow>Case Studies</Eyebrow>
+      <SectionTitle className="mb-0">
+        Real Melbourne Businesses.
+        <br />
+        <Accent>Extraordinary</Accent> Results.
+      </SectionTitle>
+      <Divider />
+      <p className="max-w-170 text-lg leading-[1.7] font-light text-cream/60">
+        Numbers without context are meaningless. Here&apos;s what we&apos;ve
+        actually achieved for Melbourne businesses — with specifics.
+      </p>
 
-      <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
+      <div role="list" className="mt-16 grid grid-cols-1 gap-5 lg:grid-cols-3">
         {caseStudies.map((study) => (
           <Reveal
             key={study.tag}
             as="article"
-            className="rounded-xl border border-white/10 bg-white/5 p-10 transition-all duration-300 hover:border-brand hover:bg-white/8"
+            role="listitem"
+            className="relative overflow-hidden rounded-md border border-border-gold bg-navy-3 p-11 transition-all duration-300 hover:-translate-y-1 hover:border-gold/40 after:absolute after:inset-x-0 after:bottom-0 after:h-[3px] after:bg-[linear-gradient(to_right,var(--color-gold),transparent)] after:content-['']"
           >
-            <span className="mb-6 block text-[0.72rem] font-semibold tracking-[0.08em] text-brand uppercase">
+            <span className="mb-5 block text-xs font-bold tracking-[0.1em] text-gold uppercase">
               {study.tag}
             </span>
-            <span className="mb-2 block font-serif text-[3.5rem] leading-none text-white">
+            <span className="mb-2 block font-serif text-[3.5rem] leading-none font-bold text-cream">
               {study.headline}
             </span>
-            <div className="mb-5 text-[0.82rem] text-white/50">{study.sub}</div>
-            <p className="text-[0.85rem] leading-[1.7] text-white/45">
+            <div className="mb-5 text-xs tracking-[0.08em] text-slate uppercase">
+              {study.metric}
+            </div>
+            <p className="text-sm leading-[1.7] font-light text-cream/55">
               {study.description}
             </p>
           </Reveal>
