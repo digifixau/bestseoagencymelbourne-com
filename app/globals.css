@@ -175,6 +175,39 @@ body {
   color: var(--color-cream);
 }
 
+/*
+ * Callout boxes. The editor emits these as <p style="background:#eff6ff;
+ * border-left:4px solid …"> with a light inline background, which leaves the
+ * inherited cream text unreadable. Inline styles can only be beaten with
+ * !important, so restyle them to match the dark theme.
+ */
+.wp-content p[style*="border-left"] {
+  background: var(--color-navy-3) !important;
+  border: 1px solid var(--color-border-gold) !important;
+  border-left: 4px solid var(--color-gold) !important;
+  border-radius: 0.5rem !important;
+  padding: 1rem 1.25rem !important;
+  color: var(--color-cream) !important;
+}
+
+/*
+ * Other inline-styled boxes, table rows and cells that use a light
+ * background need dark text, otherwise they inherit the cream body colour.
+ */
+.wp-content :is(div, tr, td, th, p)[style*="background:#f8fafc" i],
+.wp-content :is(div, tr, td, th, p)[style*="background:#f4f8f9" i],
+.wp-content :is(div, tr, td, th, p)[style*="background:#eff6ff" i],
+.wp-content :is(div, tr, td, th, p)[style*="background:#ffffff" i] {
+  color: #0f172a;
+}
+
+.wp-content :is(div, tr, td, th, p)[style*="background:#f8fafc" i] strong,
+.wp-content :is(div, tr, td, th, p)[style*="background:#f4f8f9" i] strong,
+.wp-content :is(div, tr, td, th, p)[style*="background:#eff6ff" i] strong,
+.wp-content :is(div, tr, td, th, p)[style*="background:#ffffff" i] strong {
+  color: inherit;
+}
+
 .wp-content img,
 .wp-content iframe,
 .wp-content video {
