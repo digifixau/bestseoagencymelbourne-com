@@ -122,29 +122,73 @@ export interface PostsPage {
   total: number | null;
 }
 
+/**
+ * Every post, loaded once and shared.
+ *
+ * A build renders ~90 post pages, each of which used to hit the CMS several
+ * times (post, author, media, categories — twice, for metadata and the page).
+ * That burst trips the host's bot protection ("Checking your browser", HTTP
+ * 403) and fails the deploy. Loading the whole set in a few requests and
+ * serving every lookup from memory keeps the request count tiny.
+ */
+const ALL_POSTS_TTL_MS = 60 * 60 * 1000;
+const ALL_POSTS_PER_PAGE = 100;
+
+let allPostsCache: { at: number; promise: Promise<BlogPost[]> } | null = null;
+
+function loadAllPosts(): Promise<BlogPost[]> {
+  if (allPostsCache && Date.now() - allPostsCache.at < ALL_POSTS_TTL_MS) {
+    return allPostsCache.promise;
+  }
+
+  const promise = (async () => {
+    const all: BlogPost[] = [];
+
+    for (let page = 1; ; page++) {
+      try {
+        const result = await wp.posts.listWithRelations(
+          { page, perPage: ALL_POSTS_PER_PAGE, orderby: "date", order: "desc" },
+          RELATIONS,
+        );
+        all.push(...result.items.map(toBlogPost));
+        if (!result.hasMore) break;
+      } catch (error) {
+        // Past the last page WordPress answers 400, which wp-fetch surfaces
+        // as an invalid-page error rather than an empty list.
+        if (isWPError(error) && error.kind === "invalid_page") break;
+        throw error;
+      }
+    }
+
+    return all;
+  })();
+
+  const entry = { at: Date.now(), promise };
+  allPostsCache = entry;
+  // Never cache a failure, so the next call retries.
+  promise.catch(() => {
+    if (allPostsCache === entry) allPostsCache = null;
+  });
+
+  return promise;
+}
+
 /** One page of posts, newest first. */
 export async function getPosts({
   page = 1,
   perPage = 9,
 }: { page?: number; perPage?: number } = {}): Promise<PostsPage> {
   try {
-    const result = await wp.posts.listWithRelations(
-      { page, perPage, orderby: "date", order: "desc" },
-      RELATIONS,
-    );
+    const all = await loadAllPosts();
+    const start = (page - 1) * perPage;
 
     return {
-      posts: result.items.map(toBlogPost),
-      page: result.page,
-      hasMore: result.hasMore,
-      total: result.total,
+      posts: all.slice(start, start + perPage),
+      page,
+      hasMore: start + perPage < all.length,
+      total: all.length,
     };
   } catch (error) {
-    // Past the last page WordPress answers 400, which wp-fetch surfaces as an
-    // invalid-page error rather than an empty list.
-    if (isWPError(error) && error.kind === "invalid_page") {
-      return { posts: [], page, hasMore: false, total: null };
-    }
     survivable(error, `getPosts(page ${page})`);
     return { posts: [], page, hasMore: false, total: null };
   }
@@ -159,15 +203,8 @@ export async function getRecentPosts(limit = 3): Promise<BlogPost[]> {
 /** A single post by slug, or null when it does not exist. */
 export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
   try {
-    // `slug` is a collection filter, so this is one indexed request rather than
-    // a bySlug() lookup followed by a hydration round trip.
-    const { items } = await wp.posts.listWithRelations(
-      { slug, perPage: 1 },
-      RELATIONS,
-    );
-
-    const post = items[0];
-    return post ? toBlogPost(post) : null;
+    const all = await loadAllPosts();
+    return all.find((post) => post.slug === slug) ?? null;
   } catch (error) {
     survivable(error, `getPostBySlug(${slug})`);
     return null;
@@ -176,18 +213,13 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
 
 /** Every published slug, for `generateStaticParams`. */
 export async function getAllPostSlugs(): Promise<string[]> {
-  const slugs: string[] = [];
-
   try {
-    // `stream()` never sends `page`, so the SQL offset stays at zero.
-    for await (const post of wp.posts.stream({ fields: ["slug"] })) {
-      slugs.push(post.slug);
-    }
+    const all = await loadAllPosts();
+    return all.map((post) => post.slug);
   } catch (error) {
     survivable(error, "getAllPostSlugs");
+    return [];
   }
-
-  return slugs;
 }
 
 /** Site-local, stable across server and client. */
