@@ -57,6 +57,51 @@ type HydratedPost = Omit<WPPost, "author" | "featured_media" | "categories"> & {
   readonly categories: readonly WPTerm[];
 };
 
+/** WCAG relative luminance of a CSS colour, or null when it is not a plain hex/rgb value. */
+function luminance(value: string): number | null {
+  const v = value.trim().toLowerCase();
+  let rgb: number[] | null = null;
+
+  const hex = v.match(/^#([0-9a-f]{3}|[0-9a-f]{6})$/);
+  if (hex) {
+    const h =
+      hex[1].length === 3
+        ? hex[1].replace(/./g, (c) => c + c)
+        : hex[1];
+    rgb = [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16));
+  } else {
+    const fn = v.match(/^rgba?\(\s*(\d+)[\s,]+(\d+)[\s,]+(\d+)/);
+    if (fn) rgb = [Number(fn[1]), Number(fn[2]), Number(fn[3])];
+    else if (v === "white") rgb = [255, 255, 255];
+  }
+  if (!rgb) return null;
+
+  const [r, g, b] = rgb.map((c) => {
+    const x = c / 255;
+    return x <= 0.03928 ? x / 12.92 : ((x + 0.055) / 1.055) ** 2.4;
+  });
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+}
+
+/**
+ * The editor bakes light inline backgrounds (callouts, stat cards, table rows)
+ * into post HTML, but the site is dark and its body text is cream, so the
+ * text on those boxes disappears. CSS cannot test a colour's brightness, so
+ * tag every light-backgrounded element with `data-light` and let globals.css
+ * give those elements dark text.
+ */
+function markLightBackgrounds(html: string): string {
+  return html.replace(
+    /<([a-z][a-z0-9]*)\b([^>]*?)\sstyle=(["'])(.*?)\3([^>]*)>/gi,
+    (tag, name, before, quote, style, after) => {
+      const bg = style.match(/(?:^|;)\s*background(?:-color)?\s*:\s*([^;]+)/i);
+      const lum = bg ? luminance(bg[1]) : null;
+      if (lum === null || lum < 0.4) return tag;
+      return `<${name}${before} data-light style=${quote}${style}${quote}${after}>`;
+    },
+  );
+}
+
 function toBlogPost(post: HydratedPost): BlogPost {
   const media = post.featuredMedia;
   const details = media?.media_details;
@@ -66,7 +111,7 @@ function toBlogPost(post: HydratedPost): BlogPost {
     slug: post.slug,
     titleHtml: post.title.rendered,
     excerptHtml: post.excerpt.rendered,
-    contentHtml: post.content.rendered,
+    contentHtml: markLightBackgrounds(post.content.rendered),
     date: post.date,
     authorName: post.author?.name ?? null,
     image:

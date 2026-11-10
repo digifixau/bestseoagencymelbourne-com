@@ -1,4 +1,5 @@
 import { About } from "./components/about";
+import { BlogSection } from "./components/blog-section";
 import { Cta } from "./components/cta";
 import { Faq } from "./components/faq";
 import { Hero } from "./components/hero";
@@ -19,6 +20,7 @@ export default function Home() {
       <Results />
       <Process />
       <Testimonials />
+      <BlogSection />
       <Faq />
       <Cta />
       <Suburbs />

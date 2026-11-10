@@ -176,36 +176,52 @@ body {
 }
 
 /*
- * Callout boxes. The editor emits these as <p style="background:#eff6ff;
- * border-left:4px solid …"> with a light inline background, which leaves the
- * inherited cream text unreadable. Inline styles can only be beaten with
- * !important, so restyle them to match the dark theme.
+ * Light boxes. The editor bakes light inline backgrounds into post HTML
+ * (callouts, stat cards, table rows) while the site's text is cream, which
+ * makes the text vanish. lib/wp.ts tags those elements with `data-light`;
+ * inline styles on them still win where the author set a colour.
  */
-.wp-content p[style*="border-left"] {
+.wp-content [data-light] {
+  color: #0f172a;
+}
+
+.wp-content [data-light] strong {
+  color: inherit;
+}
+
+.wp-content [data-light] a {
+  color: #1a4fa0;
+}
+
+.wp-content [data-light] a:hover {
+  color: #0f172a;
+}
+
+/*
+ * Top-level callouts (a light box with a coloured left border) are restyled
+ * to match the dark theme rather than left as a pale slab. Only direct
+ * children qualify, so stat cards nested inside other boxes are untouched.
+ * Inline styles can only be beaten with !important.
+ */
+.wp-content > [data-light][style*="border-left"] {
   background: var(--color-navy-3) !important;
   border: 1px solid var(--color-border-gold) !important;
   border-left: 4px solid var(--color-gold) !important;
   border-radius: 0.5rem !important;
   padding: 1rem 1.25rem !important;
-  color: var(--color-cream) !important;
+  color: var(--color-cream);
 }
 
-/*
- * Other inline-styled boxes, table rows and cells that use a light
- * background need dark text, otherwise they inherit the cream body colour.
- */
-.wp-content :is(div, tr, td, th, p)[style*="background:#f8fafc" i],
-.wp-content :is(div, tr, td, th, p)[style*="background:#f4f8f9" i],
-.wp-content :is(div, tr, td, th, p)[style*="background:#eff6ff" i],
-.wp-content :is(div, tr, td, th, p)[style*="background:#ffffff" i] {
-  color: #0f172a;
+.wp-content > [data-light][style*="border-left"] strong {
+  color: var(--color-cream);
 }
 
-.wp-content :is(div, tr, td, th, p)[style*="background:#f8fafc" i] strong,
-.wp-content :is(div, tr, td, th, p)[style*="background:#f4f8f9" i] strong,
-.wp-content :is(div, tr, td, th, p)[style*="background:#eff6ff" i] strong,
-.wp-content :is(div, tr, td, th, p)[style*="background:#ffffff" i] strong {
-  color: inherit;
+.wp-content > [data-light][style*="border-left"] a {
+  color: var(--color-gold);
+}
+
+.wp-content > [data-light][style*="border-left"] a:hover {
+  color: var(--color-gold-2);
 }
 
 .wp-content img,
