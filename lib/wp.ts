@@ -26,8 +26,8 @@ export const wp = withNextCache(
   createWPClient({
     url,
     // Node's fetch has no default timeout, so a hung CMS would hang the build.
-    timeoutMs: 10_000,
-    deadlineMs: 30_000,
+    timeoutMs: 15_000,
+    deadlineMs: 45_000,
   }),
   { mode: "fetch-cache", revalidate: 3600 },
 );
@@ -168,6 +168,33 @@ export interface PostsPage {
 }
 
 /**
+ * Retry a CMS request on transient failures.
+ *
+ * wp-fetch treats some of these (a truncated body, a 403 bot challenge) as
+ * non-retryable, but from a build server they are usually momentary, and one
+ * unlucky response should not fail a whole deploy.
+ */
+async function withRetries<T>(fn: () => Promise<T>): Promise<T> {
+  for (let attempt = 1; ; attempt++) {
+    try {
+      return await fn();
+    } catch (error) {
+      const transient =
+        isWPError(error) &&
+        ["parse", "timeout", "network", "server", "rate_limit", "forbidden"].includes(
+          error.kind,
+        );
+      if (!transient || attempt >= PAGE_ATTEMPTS) throw error;
+
+      console.error(
+        `[wp] attempt ${attempt}/${PAGE_ATTEMPTS} failed (${(error as { kind: string }).kind}), retrying`,
+      );
+      await new Promise((resolve) => setTimeout(resolve, 1000 * 2 ** attempt));
+    }
+  }
+}
+
+/**
  * Every post, loaded once and shared.
  *
  * A build renders ~90 post pages, each of which used to hit the CMS several
@@ -179,7 +206,10 @@ export interface PostsPage {
 const ALL_POSTS_TTL_MS = 5 * 60 * 1000;
 /** A missing slug may be a post published since the list was loaded. */
 const MISS_RELOAD_AFTER_MS = 30 * 1000;
-const ALL_POSTS_PER_PAGE = 100;
+// Small pages: 100 full posts in one response is several MB, which the host
+// can take longer than the timeout to send, truncating the body mid-stream.
+const ALL_POSTS_PER_PAGE = 20;
+const PAGE_ATTEMPTS = 4;
 
 let allPostsCache: { at: number; promise: Promise<BlogPost[]> } | null = null;
 
@@ -197,9 +227,11 @@ function loadAllPosts({ force = false } = {}): Promise<BlogPost[]> {
 
     for (let page = 1; ; page++) {
       try {
-        const result = await wp.posts.listWithRelations(
-          { page, perPage: ALL_POSTS_PER_PAGE, orderby: "date", order: "desc" },
-          RELATIONS,
+        const result = await withRetries(() =>
+          wp.posts.listWithRelations(
+            { page, perPage: ALL_POSTS_PER_PAGE, orderby: "date", order: "desc" },
+            RELATIONS,
+          ),
         );
         all.push(...result.items.map(toBlogPost));
         if (!result.hasMore) break;
