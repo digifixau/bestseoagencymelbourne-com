@@ -12,6 +12,11 @@ import {
 
 type Params = Promise<{ slug: string }>;
 
+// Rebuild at most every 5 minutes. Without an explicit value a page rendered
+// from the in-memory post list makes no fetch, so Next records no expiry and a
+// 404 for a just-published post would be cached until the next deploy.
+export const revalidate = 300;
+
 export async function generateStaticParams() {
   const slugs = await getAllPostSlugs();
   return slugs.map((slug) => ({ slug }));

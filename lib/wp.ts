@@ -176,13 +176,19 @@ export interface PostsPage {
  * 403) and fails the deploy. Loading the whole set in a few requests and
  * serving every lookup from memory keeps the request count tiny.
  */
-const ALL_POSTS_TTL_MS = 60 * 60 * 1000;
+const ALL_POSTS_TTL_MS = 5 * 60 * 1000;
+/** A missing slug may be a post published since the list was loaded. */
+const MISS_RELOAD_AFTER_MS = 30 * 1000;
 const ALL_POSTS_PER_PAGE = 100;
 
 let allPostsCache: { at: number; promise: Promise<BlogPost[]> } | null = null;
 
-function loadAllPosts(): Promise<BlogPost[]> {
-  if (allPostsCache && Date.now() - allPostsCache.at < ALL_POSTS_TTL_MS) {
+function loadAllPosts({ force = false } = {}): Promise<BlogPost[]> {
+  if (
+    !force &&
+    allPostsCache &&
+    Date.now() - allPostsCache.at < ALL_POSTS_TTL_MS
+  ) {
     return allPostsCache.promise;
   }
 
@@ -245,15 +251,28 @@ export async function getRecentPosts(limit = 3): Promise<BlogPost[]> {
   return posts;
 }
 
-/** A single post by slug, or null when it does not exist. */
+/**
+ * A single post by slug, or null when it genuinely does not exist.
+ *
+ * Errors are deliberately NOT swallowed here. The caller turns null into a
+ * 404, and Next caches that 404 — so a CMS hiccup must throw (uncached, and
+ * ISR keeps serving the last good page) rather than become a cached 404.
+ */
 export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
-  try {
-    const all = await loadAllPosts();
-    return all.find((post) => post.slug === slug) ?? null;
-  } catch (error) {
-    survivable(error, `getPostBySlug(${slug})`);
-    return null;
-  }
+  const find = (posts: BlogPost[]) =>
+    posts.find((post) => post.slug === slug) ?? null;
+
+  const cached = await loadAllPosts();
+  const hit = find(cached);
+  if (hit) return hit;
+
+  // Not in the list we hold. It may have been published after we loaded it
+  // (new posts go live daily), so reload once — but not on every miss, or
+  // crawlers probing random URLs would hammer the CMS.
+  const age = allPostsCache ? Date.now() - allPostsCache.at : Infinity;
+  if (age < MISS_RELOAD_AFTER_MS) return null;
+
+  return find(await loadAllPosts({ force: true }));
 }
 
 /** Every published slug, for `generateStaticParams`. */
