@@ -1,23 +1,27 @@
+import { Phone } from "lucide-react";
+import Link from "next/link";
+
 export function MobileCtaBar() {
   return (
     <div
       role="navigation"
       aria-label="Quick contact"
-      className="fixed inset-x-0 bottom-0 z-200 flex gap-2.5 border-t border-border-gold bg-navy-2 p-4 lg:hidden"
+      className="fixed inset-x-0 bottom-0 z-200 flex gap-3 border-t border-mist bg-white p-4 lg:hidden"
     >
       <a
         href="tel:+611300000000"
         aria-label="Call us now"
-        className="flex-1 rounded-md bg-gold py-3.5 text-center text-sm font-bold text-navy"
+        className="flex flex-1 items-center justify-center gap-2 rounded-full border-2 border-midnight py-3 font-display text-base font-bold text-midnight"
       >
-        📞 Call Now
+        <Phone aria-hidden="true" className="h-4 w-4" strokeWidth={2.5} />
+        Call Now
       </a>
-      <a
-        href="#audit"
-        className="flex-1 rounded-md border border-gold py-3.5 text-center text-sm font-bold text-gold"
+      <Link
+        href="/#audit"
+        className="flex-1 rounded-full bg-magenta py-3 text-center font-display text-base font-bold text-white"
       >
         Free Audit →
-      </a>
+      </Link>
     </div>
   );
 }

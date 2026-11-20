@@ -1,4 +1,12 @@
-import { Accent, Divider, Eyebrow, SectionTitle } from "./primitives";
+import {
+  Accent,
+  Eyebrow,
+  Lead,
+  SectionTitle,
+  card,
+  sectionPadding,
+  tag,
+} from "./primitives";
 import { Reveal } from "./reveal";
 
 const caseStudies = [
@@ -30,42 +38,44 @@ export function Results() {
     <section
       id="results"
       aria-labelledby="results-heading"
-      className="bg-navy-2 px-6 py-20 lg:px-15 lg:py-30"
+      className={`bg-white ${sectionPadding}`}
     >
-      <Eyebrow>Case Studies</Eyebrow>
-      <SectionTitle className="mb-0">
-        Real Melbourne Businesses.
-        <br />
-        <Accent>Extraordinary</Accent> Results.
-      </SectionTitle>
-      <Divider />
-      <p className="max-w-170 text-lg leading-[1.7] font-light text-cream/60">
-        Numbers without context are meaningless. Here&apos;s what we&apos;ve
-        actually achieved for Melbourne businesses — with specifics.
-      </p>
+      <div className="mx-auto max-w-360">
+        <Eyebrow>Case Studies</Eyebrow>
+        <SectionTitle id="results-heading">
+          Real Melbourne Businesses.
+          <br />
+          <Accent>Extraordinary</Accent> Results.
+        </SectionTitle>
+        <Lead>
+          Numbers without context are meaningless. Here&apos;s what we&apos;ve
+          actually achieved for Melbourne businesses — with specifics.
+        </Lead>
 
-      <div role="list" className="mt-16 grid grid-cols-1 gap-5 lg:grid-cols-3">
-        {caseStudies.map((study) => (
-          <Reveal
-            key={study.tag}
-            as="article"
-            role="listitem"
-            className="relative overflow-hidden rounded-md border border-border-gold bg-navy-3 p-11 transition-all duration-300 hover:-translate-y-1 hover:border-gold/40 after:absolute after:inset-x-0 after:bottom-0 after:h-[3px] after:bg-[linear-gradient(to_right,var(--color-gold),transparent)] after:content-['']"
-          >
-            <span className="mb-5 block text-xs font-bold tracking-[0.1em] text-gold uppercase">
-              {study.tag}
-            </span>
-            <span className="mb-2 block font-serif text-[3.5rem] leading-none font-bold text-cream">
-              {study.headline}
-            </span>
-            <div className="mb-5 text-xs tracking-[0.08em] text-slate uppercase">
-              {study.metric}
-            </div>
-            <p className="text-sm leading-[1.7] font-light text-cream/55">
-              {study.description}
-            </p>
-          </Reveal>
-        ))}
+        <div
+          role="list"
+          className="mt-16 grid grid-cols-1 gap-6 lg:grid-cols-3"
+        >
+          {caseStudies.map((study) => (
+            <Reveal
+              key={study.tag}
+              as="article"
+              role="listitem"
+              className={`${card} flex flex-col p-8 lg:p-10`}
+            >
+              <span className={`${tag} mb-8 self-start`}>{study.tag}</span>
+              <span className="block font-display text-[clamp(3rem,5vw,4rem)] leading-none font-extrabold tracking-[-0.03em] text-midnight">
+                {study.headline}
+              </span>
+              <span className="mt-3 mb-6 block font-mono text-xs font-medium tracking-[0.08em] text-power-blue-deep uppercase">
+                {study.metric}
+              </span>
+              <p className="text-base leading-[1.6] text-slate">
+                {study.description}
+              </p>
+            </Reveal>
+          ))}
+        </div>
       </div>
     </section>
   );

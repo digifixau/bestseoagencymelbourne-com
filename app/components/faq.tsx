@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Divider, Eyebrow } from "./primitives";
+import { Plus } from "lucide-react";
+import { Eyebrow, SectionTitle, sectionPadding } from "./primitives";
 
 const faqs = [
   {
@@ -35,53 +36,64 @@ export function Faq() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section id="faq" aria-labelledby="faq-heading" className="px-6 py-20 lg:px-15 lg:py-30">
-      <div className="mb-12 text-center">
-        <Eyebrow>FAQ</Eyebrow>
-        <h2
-          id="faq-heading"
-          className="font-serif text-[clamp(2.2rem,4vw,3.4rem)] leading-[1.12] tracking-[-0.02em] text-cream"
-        >
-          Frequently Asked Questions
-        </h2>
-        <Divider center />
-      </div>
+    <section
+      id="faq"
+      aria-labelledby="faq-heading"
+      className={`bg-white ${sectionPadding}`}
+    >
+      <div className="mx-auto grid max-w-360 grid-cols-1 gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-24">
+        <div>
+          <Eyebrow>FAQ</Eyebrow>
+          <SectionTitle id="faq-heading">
+            Frequently Asked Questions
+          </SectionTitle>
+        </div>
 
-      <div role="list" className="mx-auto max-w-200">
-        {faqs.map((faq, index) => {
-          const isOpen = openIndex === index;
-          const panelId = `faq-panel-${index}`;
+        <div role="list" className="border-t border-mist">
+          {faqs.map((faq, index) => {
+            const isOpen = openIndex === index;
+            const buttonId = `faq-button-${index}`;
+            const panelId = `faq-panel-${index}`;
 
-          return (
-            <div key={faq.question} role="listitem" className="border-b border-border-gold">
-              <button
-                type="button"
-                aria-expanded={isOpen}
-                aria-controls={panelId}
-                onClick={() => setOpenIndex(isOpen ? null : index)}
-                className="flex w-full cursor-pointer items-center justify-between gap-4 py-6 text-left text-base font-bold text-cream transition-colors duration-200 hover:text-gold"
+            return (
+              <div
+                key={faq.question}
+                role="listitem"
+                className="border-b border-mist"
               >
-                {faq.question}
-                <span
-                  aria-hidden="true"
-                  className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-border-gold text-base transition-all duration-200 ${
-                    isOpen ? "border-gold bg-gold text-navy" : "text-gold"
-                  }`}
-                >
-                  {isOpen ? "−" : "+"}
-                </span>
-              </button>
-              {isOpen && (
-                <p
-                  id={panelId}
-                  className="pb-6 text-sm leading-[1.8] font-light text-cream/60"
-                >
-                  {faq.answer}
-                </p>
-              )}
-            </div>
-          );
-        })}
+                <h3>
+                  <button
+                    id={buttonId}
+                    type="button"
+                    aria-expanded={isOpen}
+                    aria-controls={panelId}
+                    onClick={() => setOpenIndex(isOpen ? null : index)}
+                    className="flex w-full cursor-pointer items-center justify-between gap-6 py-6 text-left font-display text-xl font-bold text-midnight transition-colors duration-200 hover:text-power-blue-deep"
+                  >
+                    {faq.question}
+                    <Plus
+                      aria-hidden="true"
+                      strokeWidth={2}
+                      className={`h-6 w-6 shrink-0 text-power-blue-deep transition-transform duration-200 ${
+                        isOpen ? "rotate-45" : ""
+                      }`}
+                    />
+                  </button>
+                </h3>
+                {isOpen && (
+                  <p
+                    id={panelId}
+                    role="region"
+                    aria-labelledby={buttonId}
+                    className="max-w-170 pb-6 text-base leading-[1.65] text-slate"
+                  >
+                    {faq.answer}
+                  </p>
+                )}
+              </div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

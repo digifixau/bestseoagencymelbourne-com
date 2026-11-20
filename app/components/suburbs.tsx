@@ -27,21 +27,26 @@ const suburbs = [
 
 export function Suburbs() {
   return (
-    <div aria-label="Service areas across Melbourne" className="bg-navy-2 px-6 py-16 lg:px-15">
-      <h3 className="mb-7 text-center font-serif text-xl font-semibold text-cream">
+    <section
+      aria-labelledby="suburbs-heading"
+      className="border-t border-mist bg-paper px-6 py-16 lg:px-30 lg:py-20"
+    >
+      <h2
+        id="suburbs-heading"
+        className="mb-8 text-center font-display text-h3 font-bold text-midnight"
+      >
         SEO Services Across All Melbourne Suburbs
-      </h3>
-      <ul role="list" className="mx-auto flex max-w-250 flex-wrap justify-center gap-2.5">
+      </h2>
+      <ul className="mx-auto flex max-w-250 flex-wrap justify-center gap-3">
         {suburbs.map((suburb) => (
           <li
             key={suburb}
-            role="listitem"
-            className="cursor-default rounded border border-border-gold bg-gold/6 px-4.5 py-1.75 text-xs tracking-[0.04em] text-cream/60 transition-all duration-200 hover:border-gold/40 hover:text-gold"
+            className="rounded-full border border-mist bg-white px-4 py-1.5 font-mono text-xs font-medium tracking-[0.06em] text-midnight uppercase"
           >
             {suburb}
           </li>
         ))}
       </ul>
-    </div>
+    </section>
   );
 }

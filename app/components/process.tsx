@@ -1,4 +1,4 @@
-import { Accent, Divider, Eyebrow, SectionTitle } from "./primitives";
+import { Accent, Eyebrow, SectionTitle, sectionPadding } from "./primitives";
 import { Reveal } from "./reveal";
 
 const steps = [
@@ -30,37 +30,40 @@ const steps = [
 
 export function Process() {
   return (
-    <section id="process" aria-labelledby="process-heading" className="px-6 py-20 lg:px-15 lg:py-30">
-      <div className="mb-0 text-center">
-        <Eyebrow>Our Process</Eyebrow>
-        <SectionTitle className="mb-0">
-          A Proven System for
-          <br />
-          <Accent>Ranking & Revenue</Accent>
-        </SectionTitle>
-        <Divider center />
-      </div>
+    <section
+      id="process"
+      aria-labelledby="process-heading"
+      className={`bg-paper ${sectionPadding}`}
+    >
+      <div className="mx-auto max-w-360">
+        <div className="max-w-200">
+          <Eyebrow>Our Process</Eyebrow>
+          <SectionTitle id="process-heading">
+            A Proven System for
+            <br />
+            <Accent>Ranking & Revenue</Accent>
+          </SectionTitle>
+        </div>
 
-      <div className="relative mt-16 grid grid-cols-1 gap-px sm:grid-cols-2 lg:grid-cols-4">
-        <div
-          aria-hidden="true"
-          className="absolute inset-x-[12.5%] top-10 hidden h-px bg-[linear-gradient(to_right,var(--color-gold)_0%,rgba(200,151,60,0.1)_100%)] lg:block"
-        />
-        {steps.map((step) => (
-          <Reveal key={step.number} className="px-4 text-center">
-            <div className="relative z-1 mx-auto mb-7 flex h-20 w-20 items-center justify-center rounded-full border-2 border-gold bg-navy">
-              <span className="font-serif text-2xl font-bold text-gold">
-                {step.number}
+        <ol className="mt-16 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+          {steps.map((step) => (
+            <Reveal
+              key={step.number}
+              as="li"
+              className="border-t-2 border-mist pt-6"
+            >
+              <span className="mb-6 block font-mono text-label font-medium text-power-blue-deep">
+                0{step.number}
               </span>
-            </div>
-            <h3 className="mb-3 font-serif text-lg font-semibold text-cream">
-              {step.title}
-            </h3>
-            <p className="text-sm leading-[1.7] font-light text-slate">
-              {step.description}
-            </p>
-          </Reveal>
-        ))}
+              <h3 className="mb-3 font-display text-h3 font-bold text-midnight">
+                {step.title}
+              </h3>
+              <p className="text-base leading-[1.6] text-slate">
+                {step.description}
+              </p>
+            </Reveal>
+          ))}
+        </ol>
       </div>
     </section>
   );

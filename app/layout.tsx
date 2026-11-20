@@ -1,19 +1,38 @@
-import type { Metadata } from "next";
-import { Lato, Playfair_Display } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import {
+  Bricolage_Grotesque,
+  Geist_Mono,
+  Instrument_Sans,
+  Instrument_Serif,
+} from "next/font/google";
 import { MobileCtaBar } from "./components/mobile-cta-bar";
 import { SiteFooter } from "./components/site-footer";
 import { SiteNav } from "./components/site-nav";
 import "./globals.css";
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
-  weight: ["400", "500", "600", "700"],
+// DigiFix brand type (guide slide 17). All four are SIL OFL, from Google Fonts.
+const display = Bricolage_Grotesque({
+  variable: "--font-bricolage",
+  weight: ["600", "700", "800"],
   subsets: ["latin"],
 });
 
-const lato = Lato({
-  variable: "--font-lato",
-  weight: ["300", "400", "700"],
+const accent = Instrument_Serif({
+  variable: "--font-instrument-serif",
+  weight: "400",
+  style: "italic",
+  subsets: ["latin"],
+});
+
+const body = Instrument_Sans({
+  variable: "--font-instrument-sans",
+  weight: ["400", "500", "600"],
+  subsets: ["latin"],
+});
+
+const mono = Geist_Mono({
+  variable: "--font-geist-mono",
+  weight: ["500"],
   subsets: ["latin"],
 });
 
@@ -22,7 +41,8 @@ const siteUrl = "https://bestseoagencymelbourne.au";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Best SEO Agency Melbourne | #1 Ranked Since 2012 | Free $1,200 Audit",
+    default:
+      "Best SEO Agency Melbourne | #1 Ranked Since 2012 | Free $1,200 Audit",
     template: "%s | Best SEO Agency Melbourne",
   },
   description:
@@ -60,6 +80,10 @@ export const metadata: Metadata = {
     "geo.position": "-37.8136;144.9631",
     ICBM: "-37.8136, 144.9631",
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#FFFFFF",
 };
 
 const localBusinessSchema = {
@@ -225,7 +249,9 @@ const faqSchema = {
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: siteUrl }],
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
+  ],
 };
 
 export default function RootLayout({
@@ -236,13 +262,15 @@ export default function RootLayout({
   return (
     <html
       lang="en-AU"
-      className={`${playfair.variable} ${lato.variable} antialiased`}
+      className={`${display.variable} ${accent.variable} ${body.variable} ${mono.variable} antialiased`}
     >
       <head>
         <script
           type="application/ld+json"
           // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(localBusinessSchema),
+          }}
         />
         <script
           type="application/ld+json"
@@ -258,7 +286,7 @@ export default function RootLayout({
       <body className="flex min-h-screen flex-col font-sans">
         <a
           href="#main-content"
-          className="sr-only z-1000 rounded-md bg-gold px-4 py-2 font-bold text-navy focus:not-sr-only focus:fixed focus:top-4 focus:left-4"
+          className="sr-only z-1000 rounded-full bg-magenta px-4 py-2 font-semibold text-white focus:not-sr-only focus:fixed focus:top-4 focus:left-4"
         >
           Skip to main content
         </a>

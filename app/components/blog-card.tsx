@@ -10,9 +10,9 @@ export function BlogCard({
   priority?: boolean;
 }) {
   return (
-    <article className="group flex h-full flex-col overflow-hidden border border-border-gold bg-navy-3 transition-all duration-300 hover:border-gold/40 hover:-translate-y-1">
+    <article className="group flex h-full flex-col overflow-hidden rounded-card border border-mist bg-white transition-colors duration-300 hover:border-power-blue">
       <Link href={`/blog/${post.slug}`} className="flex h-full flex-col">
-        <div className="relative aspect-[16/9] overflow-hidden bg-navy-2">
+        <div className="relative aspect-video overflow-hidden bg-mist">
           {post.image ? (
             <Image
               src={post.image.src}
@@ -23,38 +23,36 @@ export function BlogCard({
               className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
             />
           ) : (
-            <div className="flex h-full items-center justify-center font-serif text-[2rem] text-cream/10">
+            <div className="flex h-full items-center justify-center font-display text-2xl font-extrabold text-power-blue/30">
               Best SEO Melbourne
             </div>
           )}
         </div>
 
-        <div className="flex flex-1 flex-col p-7">
-          <div className="mb-3 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs font-bold tracking-[0.08em] text-gold uppercase">
-            {post.categories[0] ? (
-              <span>{post.categories[0].name}</span>
-            ) : null}
+        <div className="flex flex-1 flex-col p-8">
+          <div className="mb-4 flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-xs font-medium tracking-[0.08em] text-power-blue-deep uppercase">
+            {post.categories[0] ? <span>{post.categories[0].name}</span> : null}
             {post.categories[0] ? (
               <span aria-hidden="true" className="text-slate">
                 ·
               </span>
             ) : null}
-            <time dateTime={post.date} className="text-slate normal-case">
+            <time dateTime={post.date} className="text-slate">
               {formatPostDate(post.date)}
             </time>
           </div>
 
           <h3
-            className="mb-3 font-serif text-lg leading-snug font-semibold text-cream"
+            className="mb-3 font-display text-xl leading-[1.2] font-bold tracking-[-0.01em] text-midnight"
             dangerouslySetInnerHTML={{ __html: post.titleHtml }}
           />
 
           <div
-            className="mb-6 line-clamp-3 text-sm leading-[1.7] font-light text-cream/55"
+            className="mb-6 line-clamp-3 text-base leading-[1.6] text-slate"
             dangerouslySetInnerHTML={{ __html: post.excerptHtml }}
           />
 
-          <span className="mt-auto flex items-center gap-2 text-sm font-bold text-gold transition-all duration-200 group-hover:gap-3.5">
+          <span className="mt-auto flex items-center gap-1.5 font-display text-base font-bold text-power-blue-deep underline-offset-4 group-hover:underline">
             Read article →
           </span>
         </div>

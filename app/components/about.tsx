@@ -1,21 +1,29 @@
-import { Accent, Divider, Eyebrow, SectionTitle } from "./primitives";
+import { Award, BarChart3, Lock } from "lucide-react";
+import {
+  Accent,
+  Eyebrow,
+  Lead,
+  SectionTitle,
+  card,
+  sectionPadding,
+} from "./primitives";
 import { Reveal } from "./reveal";
 
 const credentials = [
   {
-    icon: "🏆",
+    icon: Award,
     title: "Google Partner Agency — Certified Since 2014",
     description:
       "One of fewer than 300 agencies in Australia to hold Google Partner status, with certified specialists across Search, Analytics, and Tag Manager.",
   },
   {
-    icon: "📊",
+    icon: BarChart3,
     title: "Proprietary RankMatrix™ Methodology",
     description:
       "12 years of Melbourne-specific ranking data distilled into our own ranking framework — tested across 500+ campaigns, refined every quarter.",
   },
   {
-    icon: "🔒",
+    icon: Lock,
     title: "100% In-House Team — Never Outsourced",
     description:
       "Every strategy, every piece of content, every link outreach is executed by our Melbourne team. Your campaign is never handed to a contractor or offshore team.",
@@ -51,77 +59,78 @@ const team = [
 
 export function About() {
   return (
-    <section id="about" aria-labelledby="about-heading" className="px-6 py-20 lg:px-15 lg:py-30">
-      <div className="grid grid-cols-1 items-start gap-16 lg:grid-cols-2 lg:gap-20">
+    <section
+      id="about"
+      aria-labelledby="about-heading"
+      className={`bg-paper ${sectionPadding}`}
+    >
+      <div className="mx-auto grid max-w-360 grid-cols-1 items-start gap-16 lg:grid-cols-2 lg:gap-24">
         <div>
           <Eyebrow>Why We&apos;re Different</Eyebrow>
-          <SectionTitle>
+          <SectionTitle id="about-heading">
             Built by SEO Experts.
             <br />
             <Accent>Trusted</Accent> by Melbourne.
           </SectionTitle>
-          <Divider />
-          <p className="text-lg leading-[1.7] font-light text-cream/60">
+          <Lead>
             We&apos;re not a digital marketing generalist that added SEO as an
             afterthought. We are a pure-play SEO agency — it&apos;s all we do,
-            and we&apos;ve done it for 12 years in one of Australia&apos;s
-            most competitive markets.
-          </p>
+            and we&apos;ve done it for 12 years in one of Australia&apos;s most
+            competitive markets.
+          </Lead>
 
-          <div className="mt-10 flex flex-col gap-5">
-            {credentials.map((credential) => (
+          <ul className="mt-12 flex flex-col gap-4">
+            {credentials.map(({ icon: Icon, ...credential }) => (
               <Reveal
                 key={credential.title}
-                className="flex items-start gap-4.5 border-l-[3px] border-gold bg-navy-3 px-6 py-5"
+                as="li"
+                className="flex items-start gap-5 rounded-card border-l-4 border-power-blue-deep bg-sky-tint px-6 py-5"
               >
-                <span aria-hidden="true" className="mt-0.5 text-[1.4rem]">
-                  {credential.icon}
-                </span>
+                <Icon
+                  aria-hidden="true"
+                  className="mt-0.5 h-6 w-6 shrink-0 text-power-blue-deep"
+                  strokeWidth={2}
+                />
                 <div>
-                  <div className="mb-1 text-base font-bold text-cream">
+                  <h3 className="mb-1 font-display text-lg font-bold text-midnight">
                     {credential.title}
-                  </div>
-                  <div className="text-sm leading-[1.6] font-light text-cream/55">
+                  </h3>
+                  <p className="text-base leading-[1.55] text-midnight/80">
                     {credential.description}
-                  </div>
+                  </p>
                 </div>
               </Reveal>
             ))}
-          </div>
+          </ul>
         </div>
 
         <div>
           <div className="mb-8">
             <Eyebrow>Meet the Team</Eyebrow>
-            <p className="mt-2 text-sm leading-[1.7] font-light text-slate">
-              Our senior consultants average 11 years of SEO experience —
-              your campaign is never handed to a junior.
+            <p className="text-base leading-[1.6] text-slate">
+              Our senior consultants average 11 years of SEO experience — your
+              campaign is never handed to a junior.
             </p>
           </div>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             {team.map((member) => (
-              <Reveal
-                key={member.name}
-                className="border border-border-gold bg-navy-3 p-6"
-              >
+              <Reveal key={member.name} as="li" className={`${card} p-6`}>
                 <div
                   aria-hidden="true"
-                  className="mb-3.5 flex h-12 w-12 items-center justify-center rounded-full bg-gold font-serif text-[1.1rem] font-bold text-navy"
+                  className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-sky-tint font-display text-lg font-extrabold text-power-blue-deep"
                 >
                   {member.initials}
                 </div>
-                <div className="mb-0.5 text-base font-bold text-cream">
+                <h3 className="font-display text-lg font-bold text-midnight">
                   {member.name}
-                </div>
-                <div className="mb-2 text-xs tracking-[0.08em] text-gold uppercase">
+                </h3>
+                <p className="mt-1 mb-3 font-mono text-xs font-medium tracking-[0.08em] text-power-blue-deep uppercase">
                   {member.title}
-                </div>
-                <div className="text-xs leading-[1.6] text-slate">
-                  {member.bio}
-                </div>
+                </p>
+                <p className="text-sm leading-[1.6] text-slate">{member.bio}</p>
               </Reveal>
             ))}
-          </div>
+          </ul>
         </div>
       </div>
     </section>

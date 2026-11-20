@@ -1,4 +1,12 @@
-import { Accent, Eyebrow, SectionTitle } from "./primitives";
+import { Star } from "lucide-react";
+import { Bar } from "./brand-bar";
+import {
+  Accent,
+  Eyebrow,
+  SectionTitle,
+  card,
+  sectionPadding,
+} from "./primitives";
 import { Reveal } from "./reveal";
 
 const testimonials = [
@@ -32,53 +40,97 @@ const testimonials = [
   },
 ];
 
-export function Testimonials() {
+function Stars() {
   return (
-    <section aria-labelledby="testi-heading" className="bg-navy-2 px-6 py-20 lg:px-15 lg:py-30">
-      <Eyebrow>Testimonials</Eyebrow>
-      <SectionTitle className="mb-0">
-        127 Melbourne Businesses
-        <br />
-        <Accent>Can&apos;t Be Wrong</Accent>
-      </SectionTitle>
+    <div
+      role="img"
+      aria-label="Rated 5 out of 5 stars"
+      className="mb-5 flex gap-1 text-power-blue-deep"
+    >
+      {Array.from({ length: 5 }, (_, i) => (
+        <Star key={i} aria-hidden="true" className="h-4 w-4 fill-current" />
+      ))}
+    </div>
+  );
+}
 
-      <div className="mt-16 grid grid-cols-1 gap-6 lg:grid-cols-2">
-        {testimonials.map((testimonial) => (
-          <Reveal
-            key={testimonial.name}
-            as="article"
-            className="relative overflow-hidden rounded-md border border-border-gold bg-navy-3 p-11"
-          >
-            <span
-              aria-hidden="true"
-              className="pointer-events-none absolute top-2.5 right-6 font-serif text-[7rem] leading-none text-gold/8"
-            >
-              &ldquo;
-            </span>
-            <div
-              aria-label="Rated 5 out of 5 stars"
-              className="relative z-1 mb-5 text-[0.85rem] tracking-[3px] text-[#F59E0B]"
-            >
-              ★★★★★
-            </div>
-            <p className="relative z-1 mb-7 font-serif text-[1.1rem] leading-[1.65] text-cream/85 italic">
-              &ldquo;{testimonial.quote}&rdquo;
+function Attribution({
+  initials,
+  name,
+  role,
+}: {
+  initials: string;
+  name: string;
+  role: string;
+}) {
+  return (
+    <footer className="flex items-center gap-4">
+      <div
+        aria-hidden="true"
+        className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-sky-tint font-display text-base font-extrabold text-power-blue-deep"
+      >
+        {initials}
+      </div>
+      <div>
+        <div className="font-display text-base font-bold text-midnight">
+          {name}
+        </div>
+        <div className="mt-0.5 font-mono text-xs font-medium tracking-[0.06em] text-slate uppercase">
+          {role}
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+export function Testimonials() {
+  const [featured, ...rest] = testimonials;
+
+  return (
+    <section
+      aria-labelledby="testi-heading"
+      className={`bg-white ${sectionPadding}`}
+    >
+      <div className="mx-auto max-w-360">
+        <Eyebrow>Testimonials</Eyebrow>
+        <SectionTitle id="testi-heading">
+          127 Melbourne Businesses
+          <br />
+          <Accent>Can&apos;t Be Wrong</Accent>
+        </SectionTitle>
+
+        {/* The Bar frames the featured quote (brand guide slide 19). */}
+        <Reveal
+          as="article"
+          className="mt-16 flex gap-6 rounded-card bg-paper p-8 lg:gap-10 lg:p-12"
+        >
+          <Bar className="self-stretch" />
+          <blockquote>
+            <Stars />
+            <p className="mb-8 max-w-240 text-lead font-medium text-midnight">
+              &ldquo;{featured.quote}&rdquo;
             </p>
-            <div className="relative z-1 flex items-center gap-3.5">
-              <div className="flex h-11.5 w-11.5 shrink-0 items-center justify-center rounded-full bg-gold font-serif text-base font-bold text-navy">
-                {testimonial.initials}
-              </div>
-              <div>
-                <div className="text-sm font-bold text-cream">
-                  {testimonial.name}
-                </div>
-                <div className="mt-0.5 text-xs text-slate">
-                  {testimonial.role}
-                </div>
-              </div>
-            </div>
-          </Reveal>
-        ))}
+            <Attribution {...featured} />
+          </blockquote>
+        </Reveal>
+
+        <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-3">
+          {rest.map((testimonial) => (
+            <Reveal
+              key={testimonial.name}
+              as="article"
+              className={`${card} flex flex-col p-8`}
+            >
+              <blockquote className="flex flex-1 flex-col">
+                <Stars />
+                <p className="mb-8 flex-1 text-base leading-[1.6] text-midnight">
+                  &ldquo;{testimonial.quote}&rdquo;
+                </p>
+                <Attribution {...testimonial} />
+              </blockquote>
+            </Reveal>
+          ))}
+        </div>
       </div>
     </section>
   );

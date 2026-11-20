@@ -64,10 +64,7 @@ function luminance(value: string): number | null {
 
   const hex = v.match(/^#([0-9a-f]{3}|[0-9a-f]{6})$/);
   if (hex) {
-    const h =
-      hex[1].length === 3
-        ? hex[1].replace(/./g, (c) => c + c)
-        : hex[1];
+    const h = hex[1].length === 3 ? hex[1].replace(/./g, (c) => c + c) : hex[1];
     rgb = [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16));
   } else {
     const fn = v.match(/^rgba?\(\s*(\d+)[\s,]+(\d+)[\s,]+(\d+)/);
@@ -84,20 +81,23 @@ function luminance(value: string): number | null {
 }
 
 /**
- * The editor bakes light inline backgrounds (callouts, stat cards, table rows)
- * into post HTML, but the site is dark and its body text is cream, so the
- * text on those boxes disappears. CSS cannot test a colour's brightness, so
- * tag every light-backgrounded element with `data-light` and let globals.css
- * give those elements dark text.
+ * The editor bakes inline background colours into post HTML (callouts, stat
+ * cards, table rows) but rarely sets a text colour to match, so boxes rely on
+ * whatever colour they inherit from the page. CSS cannot test a colour's
+ * brightness, so tag each element with `data-light` or `data-dark` and let
+ * globals.css pick a readable text colour.
  */
-function markLightBackgrounds(html: string): string {
+function markBackgrounds(html: string): string {
   return html.replace(
     /<([a-z][a-z0-9]*)\b([^>]*?)\sstyle=(["'])(.*?)\3([^>]*)>/gi,
     (tag, name, before, quote, style, after) => {
       const bg = style.match(/(?:^|;)\s*background(?:-color)?\s*:\s*([^;]+)/i);
       const lum = bg ? luminance(bg[1]) : null;
-      if (lum === null || lum < 0.4) return tag;
-      return `<${name}${before} data-light style=${quote}${style}${quote}${after}>`;
+      if (lum === null) return tag;
+
+      const mark = lum >= 0.4 ? "data-light" : lum < 0.18 ? "data-dark" : null;
+      if (!mark) return tag;
+      return `<${name}${before} ${mark} style=${quote}${style}${quote}${after}>`;
     },
   );
 }
@@ -111,7 +111,7 @@ function toBlogPost(post: HydratedPost): BlogPost {
     slug: post.slug,
     titleHtml: post.title.rendered,
     excerptHtml: post.excerpt.rendered,
-    contentHtml: markLightBackgrounds(post.content.rendered),
+    contentHtml: markBackgrounds(post.content.rendered),
     date: post.date,
     authorName: post.author?.name ?? null,
     image:
@@ -181,9 +181,14 @@ async function withRetries<T>(fn: () => Promise<T>): Promise<T> {
     } catch (error) {
       const transient =
         isWPError(error) &&
-        ["parse", "timeout", "network", "server", "rate_limit", "forbidden"].includes(
-          error.kind,
-        );
+        [
+          "parse",
+          "timeout",
+          "network",
+          "server",
+          "rate_limit",
+          "forbidden",
+        ].includes(error.kind);
       if (!transient || attempt >= PAGE_ATTEMPTS) throw error;
 
       console.error(
@@ -229,7 +234,12 @@ function loadAllPosts({ force = false } = {}): Promise<BlogPost[]> {
       try {
         const result = await withRetries(() =>
           wp.posts.listWithRelations(
-            { page, perPage: ALL_POSTS_PER_PAGE, orderby: "date", order: "desc" },
+            {
+              page,
+              perPage: ALL_POSTS_PER_PAGE,
+              orderby: "date",
+              order: "desc",
+            },
             RELATIONS,
           ),
         );
