@@ -89,7 +89,7 @@ export default async function BlogPost({ params }: { params: Params }) {
       </div>
 
       <section className="bg-white px-6 pb-20 lg:px-30 lg:pb-30">
-        <div className="relative mx-auto max-w-250 overflow-hidden rounded-card bg-sky-tint px-6 py-16 text-center sm:px-12">
+        <div className="relative mx-auto max-w-250 overflow-hidden rounded-card bg-sky-tint px-6 pt-28 pb-16 text-center sm:px-12">
           <Bar className="absolute top-0 left-6 h-20 sm:left-12" />
           <h2 className="mb-4 font-display text-h2 font-extrabold text-midnight">
             Want results like these for your business?

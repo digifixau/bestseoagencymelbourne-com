@@ -20,7 +20,7 @@ export function Cta() {
       {/* Sky Tint panel; The Bar bleeds from its top edge toward the form. */}
       <div className="relative mx-auto max-w-360 overflow-hidden rounded-card bg-sky-tint px-6 py-16 sm:px-12 lg:px-24 lg:py-24">
         <Bar className="absolute top-0 left-6 h-24 sm:left-12 lg:left-24 lg:h-32" />
-        <div className="mx-auto max-w-200 pt-8 text-center lg:pt-10">
+        <div className="mx-auto max-w-200 pt-14 text-center lg:pt-16">
           <p className="mb-6 font-mono text-label font-medium text-power-blue-deep uppercase">
             Free SEO Audit — Valued at $1,200
           </p>
