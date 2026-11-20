@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Bar } from "@/app/components/brand-bar";
@@ -81,19 +80,6 @@ export default async function BlogPost({ params }: { params: Params }) {
         </div>
       </header>
 
-      {post.image ? (
-        <div className="mx-auto max-w-250 px-6 lg:px-30">
-          <Image
-            src={post.image.src}
-            alt={post.image.alt}
-            width={post.image.width}
-            height={post.image.height}
-            priority
-            sizes="(min-width: 1024px) 1000px, 100vw"
-            className="w-full rounded-card object-cover"
-          />
-        </div>
-      ) : null}
 
       <div className="px-6 py-16 lg:px-30">
         <div
