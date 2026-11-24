@@ -22,7 +22,7 @@ export function Hero() {
       aria-labelledby="hero-heading"
       className="bg-white px-6 pt-36 pb-20 lg:px-30 lg:pt-44 lg:pb-30"
     >
-      <div className="mx-auto grid max-w-360 grid-cols-1 items-center gap-16 lg:grid-cols-[1fr_440px] lg:gap-24">
+      <div className="mx-auto grid max-w-360 grid-cols-1 items-start gap-16 lg:grid-cols-[1fr_440px] lg:gap-24">
         <div>
           <p className="mb-6 animate-rise font-mono text-label font-medium text-power-blue-deep uppercase">
             Melbourne&apos;s #1 Ranked SEO Agency — 2024
