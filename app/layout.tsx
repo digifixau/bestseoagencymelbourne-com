@@ -95,7 +95,7 @@ const localBusinessSchema = {
   description:
     "Melbourne's most awarded SEO agency, delivering page 1 Google rankings for 500+ businesses since 2012. Specialists in local SEO, technical SEO, e-commerce SEO, and authority link building.",
   url: siteUrl,
-  telephone: "+611300000000",
+  telephone: "+61386691773",
   email: "hello@bestseoagencymelbourne.au",
   foundingDate: "2012",
   logo: `${siteUrl}/images/logo.png`,

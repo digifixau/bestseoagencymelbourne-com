@@ -47,11 +47,11 @@ export function SiteNav() {
       </ul>
       <div className="flex items-center gap-6">
         <a
-          href="tel:+611300000000"
-          aria-label="Call 1300 000 000"
+          href="tel:+61 38 669 1773"
+          aria-label="Call +61 38 669 1773"
           className="hidden font-mono text-sm font-medium tracking-[0.04em] text-midnight transition-colors duration-200 hover:text-power-blue-deep sm:inline"
         >
-          1300 000 000
+          +61 38 669 1773
         </a>
         <Link
           href="/#audit"

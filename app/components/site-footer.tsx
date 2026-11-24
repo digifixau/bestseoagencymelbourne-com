@@ -53,8 +53,8 @@ export function SiteFooter() {
               <br />
               Melbourne, VIC 3000
               <br />
-              <a href="tel:+611300000000" className={footerLink}>
-                1300 000 000
+              <a href="tel:+61 38 669 1773" className={footerLink}>
+                +61 38 669 1773
               </a>
               <br />
               <a
@@ -85,8 +85,8 @@ export function SiteFooter() {
             <h2 className={columnHeading}>Office Hours</h2>
             <ul>
               <li className="mb-3">
-                <a href="tel:+611300000000" className={footerLink}>
-                  1300 000 000
+                <a href="tel:+61 38 669 1773" className={footerLink}>
+                  +61 38 669 1773
                 </a>
               </li>
               <li className="text-base leading-[1.7] text-slate">

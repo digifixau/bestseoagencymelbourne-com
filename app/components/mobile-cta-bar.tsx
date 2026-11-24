@@ -9,7 +9,7 @@ export function MobileCtaBar() {
       className="fixed inset-x-0 bottom-0 z-200 flex gap-3 border-t border-mist bg-white p-4 lg:hidden"
     >
       <a
-        href="tel:+611300000000"
+        href="tel:+61 38 669 1773"
         aria-label="Call us now"
         className="flex flex-1 items-center justify-center gap-2 rounded-full border-2 border-midnight py-3 font-display text-base font-bold text-midnight"
       >
